@@ -1,7 +1,7 @@
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
-
+import os
 import time
 import gspread
 from google.oauth2.service_account import Credentials
@@ -26,6 +26,10 @@ ram_selected = 0
 gpu_selected = 0
 hdd_selected = 0
 
+def clear():
+    # check and make call for specific operating system (https://www.geeksforgeeks.org/clear-screen-python/)
+    os.system('clear' if os.name == 'posix' else 'cls')
+
 def slow_print(msg):
     print(msg)
     time.sleep(0.5)
@@ -41,7 +45,7 @@ def main_menu():
         print(ram_selected)
         print(gpu_selected)
         print(hdd_selected)
-        if cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= 1 and hdd_selected >=1:
+        if cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= 1 and hdd_selected >= 1:
             cpu_choice = partslist.acell('A2').value
             ram_choice = partslist.acell('B2').value
             gpu_choice = partslist.acell('C2').value
@@ -58,6 +62,8 @@ def main_menu():
         slow_print("5 -- Exit Store")
         selected = input("Please pick from the above options... ")
         if selected == '1':
+            clear()
+            time.sleep(1)
             cpu_list = len(cpus.col_values(1)[1:])
 
             def show_cpus():
@@ -104,10 +110,13 @@ def main_menu():
                 
             else:
                 print("Not a valid selection choice. Exiting....")
-            
+            clear()
+            time.sleep(2)
             continue
 
         elif selected == '2':
+            clear()
+            time.sleep(1)
             ram_list = len(ram.col_values(1)[1:])
 
             def show_ram():
@@ -164,7 +173,12 @@ def main_menu():
                 main_menu()
                 selected = input("Please pick from the above options... ")
 
+            clear()
+            time.sleep(1)
+
         elif selected == '3':
+            clear()
+            time.sleep(1)
             gpus_list = len(gpus.col_values(1)[1:])
 
             def show_gpus():
@@ -229,7 +243,12 @@ def main_menu():
                 main_menu()
                 selected = input("Please pick from the above options... ")
 
+            clear()
+            time.sleep(1)
+
         elif selected == '4':
+            clear()
+            time.sleep(1)
             hdd_list = len(hdd.col_values(1)[1:])
 
             def show_hdd():
@@ -294,6 +313,9 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             else:
                 print("Not a valid selection choice. Exiting....")
+
+            clear()
+            time.sleep(1)
             
 
 

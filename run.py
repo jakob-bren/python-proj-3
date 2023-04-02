@@ -32,12 +32,11 @@ def slow_print(msg):
 
 
 def main_menu():
+    global cpu_selected
+    global ram_selected
+    global gpu_selected
+    global hdd_selected
     while (True):
-        global cpu_selected
-
-        global ram_selected
-        global gpu_selected
-        global hdd_selected
         print(cpu_selected)
         slow_print("1 -- CPU Stocklist")
         slow_print("2 -- RAM Stocklist")

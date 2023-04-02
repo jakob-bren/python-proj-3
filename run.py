@@ -38,6 +38,19 @@ def main_menu():
     global hdd_selected
     while (True):
         print(cpu_selected)
+        print(ram_selected)
+        print(gpu_selected)
+        print(hdd_selected)
+        if cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= 1 and hdd_selected >=1:
+            cpu_choice = partslist.acell('A2').value
+            ram_choice = partslist.acell('B2').value
+            gpu_choice = partslist.acell('C2').value
+            hdd_choice = partslist.acell('D2').value
+            total_price = partslist.acell('E2').value
+            print("CPU = " + cpu_choice + "\n" + "RAM = " + ram_choice + "\n" + "GPU = " + gpu_choice + "\n" + "HDD = " + hdd_choice)
+            print("Calculating total price....")
+            time.sleep(1)
+            print("€" + total_price)
         slow_print("1 -- CPU Stocklist")
         slow_print("2 -- RAM Stocklist")
         slow_print("3 -- GPU Stocklist")
@@ -281,16 +294,6 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             else:
                 print("Not a valid selection choice. Exiting....")
-        elif cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= 1 and hdd_selected >=1:
-            cpu_choice = partslist.acell('A2').value
-            ram_choice = partslist.acell('B2').value
-            gpu_choice = partslist.acell('C2').value
-            hdd_choice = partslist.acell('D2').value
-            total_price = partslist.acell('E2').value
-            print("CPU = " + cpu_choice + "\n" + "RAM = " + ram_choice + "\n" + "GPU = " + gpu_choice + "\n" + "HDD = " + hdd_choice)
-            print("Calculating total price....")
-            time.sleep(1)
-            print("€" + total_price)
             
 
 

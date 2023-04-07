@@ -72,11 +72,10 @@ def main_menu():
                         y = x + 1
                         y_string = str(y)
                         entry_cpu = cpus.cell((2+x), 1)
-                        entry_freq = cpus.cell((2+x), 2)
-                        entry_core = cpus.cell((2+x), 3)
-                        entry_price = cpus.cell((2+x), 6)
+                        entry_core = cpus.cell((2+x), 2)
+                        entry_price = cpus.cell((2+x), 5)
                         print("\n")
-                        print(y_string + ". : " + entry_cpu.value + " " + entry_freq.value + " " + entry_core.value + " Cores" + "\n Price: €" + entry_price.value)
+                        print(y_string + ". : " + entry_cpu.value + " " + entry_core.value + " Cores" + "\n Price: €" + entry_price.value)
                         
                     elif x+1 == range(cpu_list):
                         return

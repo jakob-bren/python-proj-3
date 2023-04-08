@@ -84,25 +84,25 @@ def main_menu():
             selected = input("Input the number of your chosen CPU.")
             if selected == '1':
                 choice = cpus.cell(2, 1).value
-                choice_price = cpus.cell(2, 6).value
+                choice_price = cpus.cell(2, 5).value
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '2':
                 choice = cpus.cell(3, 1).value
-                choice_price = cpus.cell(3, 6).value
+                choice_price = cpus.cell(3, 5).value
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '3':
                 choice = cpus.cell(4, 1).value
-                choice_price = cpus.cell(4, 6).value
+                choice_price = cpus.cell(4, 5).value
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '4':
                 choice = cpus.cell(5, 1).value
-                choice_price = cpus.cell(5, 6).value
+                choice_price = cpus.cell(5, 5).value
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
@@ -124,10 +124,9 @@ def main_menu():
                         y = x + 1
                         y_string = str(y)
                         entry_name = ram.cell((2+x), 1)
-                        entry_freq = ram.cell((2+x), 2)
-                        entry_price = ram.cell((2+x), 4)
+                        entry_price = ram.cell((2+x), 3)
                         print("\n")
-                        print(y_string + ". : " + entry_name.value + " " + entry_freq.value + " " + "\n Price: €" + entry_price.value)
+                        print(y_string + ". : " + entry_name.value + "\n Price: €" + entry_price.value)
                         
                     elif x+1 == range(ram_list):
                         return
@@ -145,7 +144,7 @@ def main_menu():
                 ram_selected = ram_selected + 1
             elif selected == '2':
                 choice = ram.cell(3, 1).value
-                ram_price = float(ram.cell(3, 4).value)
+                ram_price = float(ram.cell(3, 3).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = ram_price + current_total
                 partslist.update('B2', choice)
@@ -153,7 +152,7 @@ def main_menu():
                 ram_selected = ram_selected + 1
             elif selected == '3':
                 choice = ram.cell(4, 1).value
-                ram_price = float(ram.cell(4, 4).value)
+                ram_price = float(ram.cell(4, 3).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = ram_price + current_total
                 partslist.update('B2', choice)
@@ -161,7 +160,7 @@ def main_menu():
                 ram_selected = ram_selected + 1
             elif selected == '4':
                 choice = ram.cell(5, 1).value
-                ram_price = float(ram.cell(5, 4).value)
+                ram_price = float(ram.cell(5, 3).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = ram_price + current_total
                 partslist.update('B2', choice)
@@ -256,11 +255,10 @@ def main_menu():
                         y = x + 1
                         y_string = str(y)
                         entry_name = hdd.cell((2+x), 1)
-                        entry_cap = hdd.cell((2+x), 2)
-                        entry_rpm = hdd.cell((2+x), 3)
-                        entry_price = hdd.cell((2+x), 5)
+                        entry_rpm = hdd.cell((2+x), 2)
+                        entry_price = hdd.cell((2+x), 4)
                         print("\n")
-                        print(y_string + ". : " + entry_name.value + " " + entry_cap.value + " " + entry_rpm.value + "\n Price: €" + entry_price.value)
+                        print(y_string + ". : " + entry_name.value + " " + entry_rpm.value + "RPM " + "\n Price: €" + entry_price.value)
                         
                     elif x+1 == range(hdd_list):
                         return
@@ -269,7 +267,7 @@ def main_menu():
             selected = input("Input the number of your chosen HDD.")
             if selected == '1':
                 choice = hdd.cell(2, 1).value
-                hdd_price = float(hdd.cell(2, 5).value)
+                hdd_price = float(hdd.cell(2, 4).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = hdd_price + current_total
                 print(choice_price)
@@ -278,7 +276,7 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             elif selected == '2':
                 choice = hdd.cell(3, 1).value
-                hdd_price = float(hdd.cell(3, 5).value)
+                hdd_price = float(hdd.cell(3, 4).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = hdd_price + current_total
                 partslist.update('D2', choice)
@@ -286,7 +284,7 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             elif selected == '3':
                 choice = hdd.cell(4, 1).value
-                hdd_price = float(hdd.cell(4, 5).value)
+                hdd_price = float(hdd.cell(4, 4).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = hdd_price + current_total
                 partslist.update('D2', choice)
@@ -294,7 +292,7 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             elif selected == '4':
                 choice = hdd.cell(5, 1).value
-                hdd_price = float(hdd.cell(5, 5).value)
+                hdd_price = float(hdd.cell(5, 4).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = hdd_price + current_total
                 partslist.update('D2', choice)
@@ -302,9 +300,8 @@ def main_menu():
                 hdd_selected = hdd_selected + 1
             elif selected == '5':
                 choice_name = hdd.cell(6, 1).value
-                choice_cap = hdd.cell(6, 2).value
                 choice = (choice_name + " " + choice_cap)
-                hdd_price = float(hdd.cell(6, 5).value)
+                hdd_price = float(hdd.cell(6, 4).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = hdd_price + current_total
                 partslist.update('D2', choice)

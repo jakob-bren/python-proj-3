@@ -45,6 +45,8 @@ def main_menu():
         print(ram_selected)
         print(gpu_selected)
         print(hdd_selected)
+        zeroprice = int(0)
+        partslist.update('E2', zeroprice) 
         if cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= 1 and hdd_selected >= 1:
             cpu_choice = partslist.acell('A2').value
             ram_choice = partslist.acell('B2').value
@@ -84,25 +86,33 @@ def main_menu():
             selected = input("Input the number of your chosen CPU.")
             if selected == '1':
                 choice = cpus.cell(2, 1).value
-                choice_price = cpus.cell(2, 5).value
+                current_total = float(partslist.cell(2, 5).value)
+                cpu_price = float(cpus.cell(2, 5).value)
+                choice_price = cpu_price + current_total
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '2':
                 choice = cpus.cell(3, 1).value
-                choice_price = cpus.cell(3, 5).value
+                current_total = float(partslist.cell(2, 5).value)
+                cpu_price = float(cpus.cell(3, 5).value)
+                choice_price = cpu_price + current_total
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '3':
                 choice = cpus.cell(4, 1).value
-                choice_price = cpus.cell(4, 5).value
+                current_total = float(partslist.cell(2, 5).value)
+                cpu_price = float(cpus.cell(4, 5).value)
+                choice_price = cpu_price + current_total
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
             elif selected == '4':
                 choice = cpus.cell(5, 1).value
-                choice_price = cpus.cell(5, 5).value
+                current_total = float(partslist.cell(2, 5).value)
+                cpu_price = float(cpus.cell(5, 5).value)
+                choice_price = cpu_price + current_total
                 partslist.update('A2', choice)
                 partslist.update('E2', choice_price)
                 cpu_selected = cpu_selected + 1
@@ -135,7 +145,7 @@ def main_menu():
             selected = input("Input the number of your chosen RAM.")
             if selected == '1':
                 choice = ram.cell(2, 1).value
-                ram_price = float(ram.cell(2, 4).value)
+                ram_price = float(ram.cell(2, 3).value)
                 current_total = float(partslist.cell(2, 5).value)
                 choice_price = ram_price + current_total
                 print(choice_price)

@@ -249,38 +249,28 @@ def main_menu():
                 if selected == '1':
                     choice = gpus.cell(2, 1).value
                     gpus_price = float(gpus.cell(2, 4).value)
-                    partslist.update('C2', choice)
-                    partslist.update('E5', gpus_price)
                     gpu_selected = gpu_selected + 1
                 elif selected == '2':
                     choice = gpus.cell(3, 1).value
                     gpus_price = float(gpus.cell(3, 4).value)
-                    partslist.update('C2', choice)
-                    partslist.update('E5', gpus_price)
                     gpu_selected = gpu_selected + 1
                 elif selected == '3':
                     choice = gpus.cell(4, 1).value
                     gpus_price = float(gpus.cell(4, 4).value)
-                    partslist.update('C2', choice)
-                    partslist.update('E5', gpus_price)
                     gpu_selected = gpu_selected + 1
                 elif selected == '4':
                     choice = gpus.cell(5, 1).value
                     gpus_price = float(gpus.cell(5, 4).value)
-                    partslist.update('C2', choice)
-                    partslist.update('E5', gpus_price)
                     gpu_selected = gpu_selected + 1
                 elif selected == '5':
                     choice = gpus.cell(6, 1).value
                     gpus_price = float(gpus.cell(6, 4).value)
-                    partslist.update('C2', choice)
-                    partslist.update('E5', gpus_price)
                     gpu_selected = gpu_selected + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
                     main_menu()
-                    selected = input("Please pick from the above options... ")
-
+                partslist.update('C2', choice)
+                partslist.update('E5', gpus_price)
                 clear()
                 time.sleep(4)
 
@@ -311,8 +301,7 @@ def main_menu():
                         elif x + 1 == range(hdd_list):
                             return
                 slow_print(
-                    "Loading storage devices currently in stock, \
-                                            please be patient...")
+                    "Loading HDDs currently in stock, please be patient...")
                 show_hdd()
                 selected = input("Input the number of your chosen HDD.")
                 if selected == '1':
@@ -333,6 +322,7 @@ def main_menu():
                     
                 else:
                     print("Not a valid selection choice. Exiting....")
+                    main_menu()
 
                 partslist.update('D2', choice)
                 partslist.update('E6', hdd_price)

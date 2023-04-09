@@ -7,6 +7,7 @@ import sys
 import time
 import gspread
 import pyfiglet
+from prettytable import PrettyTable
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -32,7 +33,6 @@ CPU_SELECTED = 0
 RAM_SELECTED = 0
 GPU_SELECTED = 0
 HDD_SELECTED = 0
-
 
 def close_prog():
     """Closes the program."""
@@ -114,48 +114,31 @@ def main_menu():
                 cpu_list = len(cpus.col_values(1)[1:])
 
                 def show_cpus():
-                    for x in range(cpu_list):
-                        if cpus.cell((2 + x), 1).value is not None:
-                            y = x + 1
-                            # computers count from 0 but we count from 1
-                            # i.e entry 0 in sheet = entry 1 on list
-                            y_string = str(y)
-                            # var to auto-add list numbers to items
-                            entry_cpu = cpus.cell((2 + x), 1)
-                            entry_core = cpus.cell((2 + x), 2)
-                            entry_price = cpus.cell((2 + x), 5)
-                            print("\n")
-                            print(
-                                y_string +
-                                ". : " +
-                                entry_cpu.value +
-                                " " +
-                                entry_core.value +
-                                " Cores" +
-                                "\n Price: €" +
-                                entry_price.value)
-
-                        elif x + 1 == range(cpu_list):
-                            return
+                    data = cpus.get_all_values()
+                    table = PrettyTable()
+                    table.field_names = data[0]
+                    for row in data[1:]:
+                        table.add_row(row)
+                    print(table)
                 slow_print(
                     "Loading CPUs currently in stock, please be patient...")
                 show_cpus()
-                selected = input("Input the number of your chosen CPU.")
+                selected = input("\nInput the number of your chosen CPU.")
                 if selected == '1':
-                    choice = cpus.cell(2, 1).value
-                    cpu_price = float(cpus.cell(2, 5).value)
+                    choice = cpus.cell(2, 2).value
+                    cpu_price = float(cpus.cell(2, 6).value)
                     CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '2':
-                    choice = cpus.cell(3, 1).value
-                    cpu_price = float(cpus.cell(3, 5).value)
+                    choice = cpus.cell(3, 2).value
+                    cpu_price = float(cpus.cell(3, 6).value)
                     CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '3':
-                    choice = cpus.cell(4, 1).value
-                    cpu_price = float(cpus.cell(4, 5).value)
+                    choice = cpus.cell(4, 2).value
+                    cpu_price = float(cpus.cell(4, 6).value)
                     CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '4':
-                    choice = cpus.cell(5, 1).value
-                    cpu_price = float(cpus.cell(5, 5).value)
+                    choice = cpus.cell(5, 2).value
+                    cpu_price = float(cpus.cell(5, 6).value)
                     CPU_SELECTED = CPU_SELECTED + 1
 
                 else:

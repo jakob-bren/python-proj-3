@@ -1,3 +1,4 @@
+"""Computer parts list creator."""
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
@@ -23,43 +24,45 @@ ram = SHEET.worksheet('ram')
 gpus = SHEET.worksheet('gpus')
 hdd = SHEET.worksheet('hdd')
 partslist = SHEET.worksheet('partslist')
-cpu_selected = 0
-ram_selected = 0
-gpu_selected = 0
-hdd_selected = 0
+# these vars below become "1"
+# or "2" "3" etc depending on
+# how many times a part is
+# selected by the user
+CPU_SELECTED = 0
+RAM_SELECTED = 0
+GPU_SELECTED = 0
+HDD_SELECTED = 0
 
 
-def quit():
+def close_prog():
+    """Closes the program."""
     clear()
     slow_print("Bye for now....")
     sys.exit()
 
 
 def clear():
+    """Clears the screen."""
     # check and make call for specific operating system
     # (https://www.geeksforgeeks.org/clear-screen-python/)
     os.system('clear' if os.name == 'posix' else 'cls')
 
 
 def slow_print(msg):
+    """Prints after a small delay."""
     print(msg)
     time.sleep(1)
 
 
 def main_menu():
-    global cpu_selected
-    global ram_selected
-    global gpu_selected
-    global hdd_selected
-    while (True):
-        print(cpu_selected)
-        print(ram_selected)
-        print(gpu_selected)
-        print(hdd_selected)
-        zeroprice = int(0)
-        partslist.update('E2', zeroprice)
-        if cpu_selected >= 1 and gpu_selected >= 1 and ram_selected >= \
-                1 and hdd_selected >= 1:
+    """Displays the main menu and holds most of the program functions."""
+    global CPU_SELECTED
+    global RAM_SELECTED
+    global GPU_SELECTED
+    global HDD_SELECTED
+    while True:
+        if CPU_SELECTED >= 1 and GPU_SELECTED >= 1 and RAM_SELECTED >= \
+                1 and HDD_SELECTED >= 1:
             cpu_choice = partslist.acell('A2').value
             ram_choice = partslist.acell('B2').value
             gpu_choice = partslist.acell('C2').value
@@ -87,22 +90,23 @@ def main_menu():
             slow_print("2 -- Exit Web Application")
             selected = input("Please pick from the above options... ")
             if selected == '1':
-                cpu_selected = 0
-                gpu_selected = 0
-                ram_selected = 0
-                hdd_selected = 0
+                CPU_SELECTED = 0
+                GPU_SELECTED = 0
+                RAM_SELECTED = 0
+                HDD_SELECTED = 0
                 clear()
                 print("Returning to main menu....")
                 continue
             elif selected == '2':
-                quit()
+                close_prog()
         else:
             slow_print("1 -- CPU Stocklist")
             slow_print("2 -- RAM Stocklist")
             slow_print("3 -- GPU Stocklist")
             slow_print("4 -- Storage Drive Stocklist")
-            slow_print("5 -- Exit Store")
-            slow_print("6 -- View Parts List")
+            slow_print("5 -- View Parts List")
+            slow_print("6 -- Exit Store")
+
             selected = input("Please pick from the above options... ")
             if selected == '1':
                 clear()
@@ -113,7 +117,10 @@ def main_menu():
                     for x in range(cpu_list):
                         if cpus.cell((2 + x), 1).value is not None:
                             y = x + 1
+                            # computers count from 0 but we count from 1
+                            # i.e entry 0 in sheet = entry 1 on list
                             y_string = str(y)
+                            # var to auto-add list numbers to items
                             entry_cpu = cpus.cell((2 + x), 1)
                             entry_core = cpus.cell((2 + x), 2)
                             entry_price = cpus.cell((2 + x), 5)
@@ -137,19 +144,19 @@ def main_menu():
                 if selected == '1':
                     choice = cpus.cell(2, 1).value
                     cpu_price = float(cpus.cell(2, 5).value)
-                    cpu_selected = cpu_selected + 1
+                    CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '2':
                     choice = cpus.cell(3, 1).value
                     cpu_price = float(cpus.cell(3, 5).value)
-                    cpu_selected = cpu_selected + 1
+                    CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '3':
                     choice = cpus.cell(4, 1).value
                     cpu_price = float(cpus.cell(4, 5).value)
-                    cpu_selected = cpu_selected + 1
+                    CPU_SELECTED = CPU_SELECTED + 1
                 elif selected == '4':
                     choice = cpus.cell(5, 1).value
                     cpu_price = float(cpus.cell(5, 5).value)
-                    cpu_selected = cpu_selected + 1
+                    CPU_SELECTED = CPU_SELECTED + 1
 
                 else:
                     print("Not a valid selection choice. Exiting....")
@@ -189,23 +196,23 @@ def main_menu():
                 if selected == '1':
                     choice = ram.cell(2, 1).value
                     ram_price = float(ram.cell(2, 3).value)
-                    ram_selected = ram_selected + 1
+                    RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '2':
                     choice = ram.cell(3, 1).value
                     ram_price = float(ram.cell(3, 3).value)
-                    ram_selected = ram_selected + 1
+                    RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '3':
                     choice = ram.cell(4, 1).value
                     ram_price = float(ram.cell(4, 3).value)
-                    ram_selected = ram_selected + 1
+                    RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '4':
                     choice = ram.cell(5, 1).value
                     ram_price = float(ram.cell(5, 3).value)
-                    ram_selected = ram_selected + 1
+                    RAM_SELECTED = RAM_SELECTED + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
                     main_menu()
-                
+
                 partslist.update('B2', choice)
                 partslist.update('E4', ram_price)
                 clear()
@@ -244,23 +251,23 @@ def main_menu():
                 if selected == '1':
                     choice = gpus.cell(2, 1).value
                     gpus_price = float(gpus.cell(2, 4).value)
-                    gpu_selected = gpu_selected + 1
+                    GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '2':
                     choice = gpus.cell(3, 1).value
                     gpus_price = float(gpus.cell(3, 4).value)
-                    gpu_selected = gpu_selected + 1
+                    GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '3':
                     choice = gpus.cell(4, 1).value
                     gpus_price = float(gpus.cell(4, 4).value)
-                    gpu_selected = gpu_selected + 1
+                    GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '4':
                     choice = gpus.cell(5, 1).value
                     gpus_price = float(gpus.cell(5, 4).value)
-                    gpu_selected = gpu_selected + 1
+                    GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '5':
                     choice = gpus.cell(6, 1).value
                     gpus_price = float(gpus.cell(6, 4).value)
-                    gpu_selected = gpu_selected + 1
+                    GPU_SELECTED = GPU_SELECTED + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
                     main_menu()
@@ -302,24 +309,24 @@ def main_menu():
                 if selected == '1':
                     choice = hdd.cell(2, 1).value
                     hdd_price = float(hdd.cell(2, 4).value)
-                    hdd_selected = hdd_selected + 1
+                    HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '2':
                     choice = hdd.cell(3, 1).value
                     hdd_price = float(hdd.cell(3, 4).value)
-                    hdd_selected = hdd_selected + 1
+                    HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '3':
                     choice = hdd.cell(4, 1).value
                     hdd_price = float(hdd.cell(4, 4).value)
-                    hdd_selected = hdd_selected + 1
+                    HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '4':
                     choice = hdd.cell(5, 1).value
                     hdd_price = float(hdd.cell(5, 4).value)
-                    hdd_selected = hdd_selected + 1
+                    HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '5':
                     choice = hdd.cell(6, 1).value
                     hdd_price = float(hdd.cell(6, 4).value)
-                    hdd_selected = hdd_selected + 1
-                    
+                    HDD_SELECTED = HDD_SELECTED + 1
+
                 else:
                     print("Not a valid selection choice. Exiting....")
                     main_menu()
@@ -328,18 +335,7 @@ def main_menu():
                 partslist.update('E6', hdd_price)
                 clear()
                 time.sleep(4)
-
             elif selected == '5':
-                slow_print("Are you sure?")
-                slow_print("1 -- Yes, exit now")
-                slow_print("2 -- Return to main menu")
-                selected = input("")
-                if selected == '1':
-                    quit()
-                elif selected == '2':
-                    main_menu()
-
-            elif selected == '6':
                 clear()
                 cpu_choice = partslist.acell('A2').value
                 ram_choice = partslist.acell('B2').value
@@ -347,25 +343,25 @@ def main_menu():
                 hdd_choice = partslist.acell('D2').value
                 total_price = partslist.acell('E7').value
 
-                if cpu_choice and cpu_selected >= 1:
+                if cpu_choice and CPU_SELECTED >= 1:
                     print(cpu_choice)
-                
+
                 else:
                     print("No CPU selected yet.")
-                
-                if ram_choice and ram_selected >= 1:
+
+                if ram_choice and RAM_SELECTED >= 1:
                     print(ram_choice)
-                
+
                 else:
                     print("No RAM selected yet.")
 
-                if gpu_choice and gpu_selected >= 1:
+                if gpu_choice and GPU_SELECTED >= 1:
                     print(gpu_choice)
 
                 else:
                     print("No GPU selected yet.")
 
-                if hdd_choice and hdd_selected >= 1:
+                if hdd_choice and HDD_SELECTED >= 1:
                     print(hdd_choice)
 
                 else:
@@ -373,9 +369,9 @@ def main_menu():
 
                 time.sleep(5)
 
-                slow_print("1 -- Return to main menu")
+                slow_print("\n1 -- Return to main menu")
                 slow_print("2 -- View item prices and subtotal")
-                selected = input("Please pick from the above options...")
+                selected = input("Please pick from the above options... ")
 
                 if selected == '1':
                     clear()
@@ -383,57 +379,81 @@ def main_menu():
 
                 elif selected == '2':
                     clear()
-                    if cpu_selected >= 1:
+                    if CPU_SELECTED >= 1:
                         price_cpu = partslist.acell('E3').value
                         print(cpu_choice + " costs €" + price_cpu)
-                
+
                     else:
                         print("No CPU selected yet.")
-                    
-                    if ram_selected >= 1:
+
+                    if RAM_SELECTED >= 1:
                         price_ram = partslist.acell('E4').value
                         print(ram_choice + " costs €" + price_ram)
-                    
+
                     else:
                         print("No RAM selected yet.")
 
-                    if gpu_selected >= 1:
+                    if GPU_SELECTED >= 1:
                         price_gpu = partslist.acell('E5').value
                         print(gpu_choice + " costs €" + price_gpu)
 
                     else:
                         print("No GPU selected yet.")
 
-                    if hdd_selected >= 1:
+                    if HDD_SELECTED >= 1:
                         price_hdd = partslist.acell('E6').value
                         print(hdd_choice + " costs €" + price_hdd)
 
                     else:
                         print("No HDD selected yet.")
-                    print("Subtotal: €" + total_price)
+
+                    if CPU_SELECTED >= 1 or GPU_SELECTED >= 1 or \
+                            RAM_SELECTED >= 1 or HDD_SELECTED >= 1:
+                        print("Subtotal: €" + total_price)
+
+                    else:
+                        print("\nNo parts are selected,"
+                              " no subtotal to display.")
 
                     time.sleep(4)
 
-                    print("Return to main menu?")
+                    print("\nReturn to main menu?")
                     slow_print("1 -- Yes")
                     slow_print("2 -- No")
-                    selected = input("Please pick from the above options.")
+                    selected = input("Please pick from the above options. ")
 
                     if selected == '1':
                         main_menu()
                     elif selected == '2':
                         clear()
                         print("Where else do you think you can go from here??")
-                        ban = pyfiglet.figlet_format("You have \n been \n banned", font="doom")
+                        ban = pyfiglet.figlet_format(
+                            "You have \n been \n banned", font="doom")
                         print(ban)
                         time.sleep(4)
                         sys.exit()
 
                 continue
 
+            elif selected == '6':
+                slow_print("Are you sure?")
+                slow_print("1 -- Yes, exit now")
+                slow_print("2 -- Return to main menu")
+                selected = input("")
+                if selected == '1':
+                    close_prog()
+                elif selected == '2':
+                    main_menu()
+
 
 def shop_intro():
-    print("/n")
+    """Shop intro and emptying price values before program initialization."""
+    zeroprice = int(0)
+    partslist.update('E3', zeroprice)
+    partslist.update('E4', zeroprice)
+    partslist.update('E5', zeroprice)
+    partslist.update('E6', zeroprice)
+    print("\n")
     logo = pyfiglet.figlet_format("DCP", font="roman")
     print(logo)
     print("(C)1992 DIGITAL COMPUTER PARTS LTD")

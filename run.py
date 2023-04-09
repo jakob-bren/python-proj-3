@@ -60,36 +60,67 @@ def admin_verify():
         slow_print("Input credentials to continue.")
         user_name = input("Username: ")
         pass_word = input("Password: ")
-        if user_name == 'admin' and pass_word == 'dundalklouth':
+        user_list = ['ulaidh', 'root']
+        pass_list = ['dundalklouth', 'xY48428z!#2q']
+        if user_name in user_list and pass_word in pass_list:
             print("Credentials verified! Proceeding...")
+            time.sleep(3)
+            clear()
             admin_console()
-        elif user_name == 'admin' and pass_word != 'dundalklouth':
+        elif user_name in user_list and pass_word not in pass_list:
             print("Password incorrect. Please try again.")
             pass_word = input("Password: ")
             if pass_word == 'dundalklouth':
                 print("Thanks. Password verified."
                       "\nProceeding... ")
                 admin_console()
+        elif user_name not in user_list and pass_word not in pass_list:
+            clear()
+            print("Perhaps you've gotten lost."
+                  "\n\nIf you didn't intend to be here,"
+                  "\npress \"1\" to continue to the main menu."
+                  "\nOtherwise, press 2.")
+            lost = input("\nAwaiting input.... ")
+            if lost == '1':
+                clear()
+                print("Proceeding...")
+                time.sleep(2)
+                clear()
+                main_menu()
+            elif lost == '2':
+                clear()
+                continue
+            else:
+                clear()
+                print("Please type either \"1\" or \"2\" without any quotation marks.")
+            
 
 
 def admin_console():
+
     while True:
+
+        def input_menu():
+            print("Do you want to...")
+            print("     1-- Modify description")
+            print("     2-- Update quantity")
+            print("     3-- Update price")
+            print("     4-- Return")
+
+        menu_logo = pyfiglet.figlet_format("GOD MODE")
+        print(menu_logo)
         slow_print("1 -- Check/modify CPU stock")
         slow_print("2 -- Check/modify RAM Stocklist")
         slow_print("3 -- Check/modify GPU Stocklist")
         slow_print("4 -- Check/modify Storage Drive Stocklist")
         slow_print("5 -- Exit Console")
 
-        selected = input("Please pick from the above options... ")
+        selected = input("\nPlease pick from the above options... ")
         if selected == '1':
             clear()
             time.sleep(4)
 
-            def input_menu():
-                print("Do you want to...")
-                print("     1-- Modify description")
-                print("     2-- Update quantity")
-                print("     3-- Update price")
+          
 
             def show_cpus():
                 data = cpus.get_all_values()
@@ -100,35 +131,133 @@ def admin_console():
                 print(table)
             slow_print(
                 "Loading CPUs currently in stock, please be patient...")
-            show_cpus()
-            selected = input("\nInput the number of your chosen CPU.")
-            if selected == '1':
-                input_menu()
-                selected = input("Choose one.. ")
-                if selected == '2':
-                    nu_qty = input("Input new quantity..")
-                    print(nu_qty)
-                    cpus.update('E2', (int(nu_qty)))
-                    print("Success! Quantity updated to " +
-                          nu_qty)
-                    time.sleep(4)
+            while True:
+                show_cpus()
+                selected = input("\nInput the number of your chosen CPU. "
+                                 "\nType \"exit\" to return to console.")
+                if selected == '1':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            cpus.update('B2', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            cpus.update('E2', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            cpus.update('F2', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                        
+                elif selected == '2':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            cpus.update('B3', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            cpus.update('E3', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            cpus.update('F3', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
                     
-            elif selected == '2':
-                choice = cpus.cell(3, 2).value
-                cpu_price = float(cpus.cell(3, 6).value)
-            elif selected == '3':
-                choice = cpus.cell(4, 2).value
-                cpu_price = float(cpus.cell(4, 6).value)
-            elif selected == '4':
-                choice = cpus.cell(5, 2).value
-                cpu_price = float(cpus.cell(5, 6).value)
+                elif selected == '3':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            cpus.update('B4', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            cpus.update('E4', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            cpus.update('F4', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                
+                elif selected == '4':
+                   while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            cpus.update('B5', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            cpus.update('E5', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            cpus.update('F5', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                elif selected == 'exit':
+                    clear()
+                    time.sleep(4)
+                    break
 
-            else:
-                print("Not a valid selection choice. Exiting....")
+                else:
+                    clear()
+                    print("Not a valid selection choice. Try again.")
+                    continue
 
-            clear()
-            time.sleep(4)
-            continue
+                
+                
 
         elif selected == '2':
             clear()
@@ -143,26 +272,131 @@ def admin_console():
                 print(table)
             slow_print(
                 "Loading RAM currently in stock, please be patient...")
-            show_ram()
-            selected = input("Input the number of your chosen RAM.")
-            if selected == '1':
-                choice = ram.cell(2, 2).value
-                ram_price = float(ram.cell(2, 4).value)
-            elif selected == '2':
-                choice = ram.cell(3, 2).value
-                ram_price = float(ram.cell(3, 4).value)
-            elif selected == '3':
-                choice = ram.cell(4, 2).value
-                ram_price = float(ram.cell(4, 4).value)
-            elif selected == '4':
-                choice = ram.cell(5, 2).value
-                ram_price = float(ram.cell(5, 4).value)
-            else:
-                print("Not a valid selection choice. Exiting....")
-                main_menu()
+            while True:
+                show_ram()
+                selected = input("\nInput the number of your chosen RAM. "
+                                 "\nType \"exit\" to return to console.")
+                if selected == '1':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            ram.update('B2', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            ram.update('C2', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            ram.update('D2', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                        
+                elif selected == '2':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            ram.update('B3', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            ram.update('C3', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            ram.update('D3', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                    
+                elif selected == '3':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            ram.update('B4', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            ram.update('C4', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            ram.update('D4', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                
+                elif selected == '4':
+                   while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            ram.update('B5', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            ram.update('C5', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            ram.update('D5', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
 
-            clear()
-            time.sleep(4)
+                elif selected == 'exit':
+                    clear()
+                    time.sleep(4)
+                    break
+
+                else:
+                    clear()
+                    print("Not a valid selection choice. Try again.")
+                    continue
 
         elif selected == '3':
             clear()
@@ -177,28 +411,158 @@ def admin_console():
                 print(table)
             slow_print(
                 "Loading GPUs currently in stock, please be patient...")
-            show_gpus()
-            selected = input("Input the number of your chosen GPU.")
-            if selected == '1':
-                choice = gpus.cell(2, 2).value
-                gpus_price = float(gpus.cell(2, 5).value)
-            elif selected == '2':
-                choice = gpus.cell(3, 2).value
-                gpus_price = float(gpus.cell(3, 5).value)
-            elif selected == '3':
-                choice = gpus.cell(4, 2).value
-                gpus_price = float(gpus.cell(4, 5).value)
-            elif selected == '4':
-                choice = gpus.cell(5, 2).value
-                gpus_price = float(gpus.cell(5, 5).value)
-            elif selected == '5':
-                choice = gpus.cell(6, 2).value
-                gpus_price = float(gpus.cell(6, 5).value)
-            else:
-                print("Not a valid selection choice. Exiting....")
-                main_menu()
-            clear()
-            time.sleep(4)
+            while True:
+                show_gpus()
+                selected = input("\nInput the number of your chosen gpus. "
+                                    "\nType \"exit\" to return to console.")
+                if selected == '1':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            gpus.update('B2', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            gpus.update('C2', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            gpus.update('D2', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                        
+                elif selected == '2':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            gpus.update('B3', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            gpus.update('C3', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            gpus.update('D3', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                    
+                elif selected == '3':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            gpus.update('B4', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            gpus.update('C4', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            gpus.update('D4', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                
+                elif selected == '4':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            gpus.update('B5', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            gpus.update('C5', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            gpus.update('D5', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                elif selected == '5':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            gpus.update('B6', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            gpus.update('C6', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            gpus.update('D6', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                elif selected == 'exit':
+                    clear()
+                    time.sleep(4)
+                    break
+
+                else:
+                    clear()
+                    print("Not a valid selection choice. Try again.")
+                    continue
+
 
         elif selected == '4':
             clear()
@@ -213,40 +577,172 @@ def admin_console():
                 print(table)
             slow_print(
                 "Loading HDDs currently in stock, please be patient...")
-            show_hdd()
-            selected = input("\nInput the ID of your chosen HDD. ")
-            if selected == '1':
-                choice = hdd.cell(2, 2).value
-                hdd_price = float(hdd.cell(2, 5).value)
-            elif selected == '2':
-                choice = hdd.cell(3, 2).value
-                hdd_price = float(hdd.cell(3, 5).value)
-            elif selected == '3':
-                choice = hdd.cell(4, 2).value
-                hdd_price = float(hdd.cell(4, 5).value)
-            elif selected == '4':
-                choice = hdd.cell(5, 2).value
-                hdd_price = float(hdd.cell(5, 5).value)
-            elif selected == '5':
-                choice = hdd.cell(6, 2).value
-                hdd_price = float(hdd.cell(6, 5).value)
+            while True:
+                show_hdd()
+                selected = input("\nInput the number of your chosen HDD. "
+                                    "\nType \"exit\" to return to console.")
+                if selected == '1':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            hdd.update('B2', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            hdd.update('C2', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            hdd.update('D2', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                        
+                elif selected == '2':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            hdd.update('B3', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            hdd.update('C3', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            hdd.update('D3', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                    
+                elif selected == '3':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            hdd.update('B4', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            hdd.update('C4', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            hdd.update('D4', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                
+                elif selected == '4':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            hdd.update('B5', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            hdd.update('C5', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            hdd.update('D5', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                elif selected == '4':
+                    while True:
+                        input_menu()
+                        selected = input("Choose one.. ")
+                        if selected == '1':
+                            nu_desc = input("Input new description.. ")
+                            print(nu_desc)
+                            hdd.update('B6', nu_desc)
+                            print("Success! Description updated to " +
+                                nu_desc)
+                            time.sleep(4)
+                        if selected == '2':
+                            nu_qty = input("Input new quantity.. ")
+                            print(nu_qty)
+                            hdd.update('C6', (int(nu_qty)))
+                            print("Success! Quantity updated to " +
+                                nu_qty)
+                            time.sleep(4)
+                        if selected == '3':
+                            nu_price = input("Input new price.. ")
+                            print(nu_price)
+                            hdd.update('D6', (float(nu_price)))
+                            print("Success! Price updated to " +
+                                nu_price)
+                            time.sleep(4)
+                        if selected == '4':
+                            break
+                elif selected == 'exit':
+                    clear()
+                    time.sleep(4)
+                    break
 
-            else:
-                print("Not a valid selection choice. Exiting....")
-                admin_console()
+                else:
+                    clear()
+                    print("Not a valid selection choice. Try again.")
+                    continue
 
-            time.sleep(4)
-            clear()
 
         elif selected == '5':
             slow_print("Are you sure?")
             slow_print("1 -- Yes, exit now")
             slow_print("2 -- Return to main console")
+            slow_print("3 -- Go to user section")
             selected = input("")
             if selected == '1':
                 close_prog()
             elif selected == '2':
                 admin_console()
+            elif selected == '3':
+                clear()
+                main_menu()
 
 
 def main_menu():
@@ -295,6 +791,8 @@ def main_menu():
             elif selected == '2':
                 close_prog()
         else:
+            menu_logo = pyfiglet.figlet_format("MAIN MENU")
+            print(menu_logo)
             slow_print("1 -- CPU Stocklist")
             slow_print("2 -- RAM Stocklist")
             slow_print("3 -- GPU Stocklist")
@@ -302,7 +800,7 @@ def main_menu():
             slow_print("5 -- View Parts List")
             slow_print("6 -- Exit Store")
 
-            selected = input("Please pick from the above options... ")
+            selected = input("\nPlease pick from the above options... ")
             if selected == '1':
                 clear()
                 time.sleep(4)
@@ -401,23 +899,23 @@ def main_menu():
                 selected = input("Input the number of your chosen GPU.")
                 if selected == '1':
                     choice = gpus.cell(2, 2).value
-                    gpus_price = float(gpus.cell(2, 5).value)
+                    gpus_price = float(gpus.cell(2, 4).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '2':
                     choice = gpus.cell(3, 2).value
-                    gpus_price = float(gpus.cell(3, 5).value)
+                    gpus_price = float(gpus.cell(3, 4).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '3':
                     choice = gpus.cell(4, 2).value
-                    gpus_price = float(gpus.cell(4, 5).value)
+                    gpus_price = float(gpus.cell(4, 4).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '4':
                     choice = gpus.cell(5, 2).value
-                    gpus_price = float(gpus.cell(5, 5).value)
+                    gpus_price = float(gpus.cell(5, 4).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '5':
                     choice = gpus.cell(6, 2).value
-                    gpus_price = float(gpus.cell(6, 5).value)
+                    gpus_price = float(gpus.cell(6, 4).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
@@ -444,23 +942,23 @@ def main_menu():
                 selected = input("\nInput the ID of your chosen HDD. ")
                 if selected == '1':
                     choice = hdd.cell(2, 2).value
-                    hdd_price = float(hdd.cell(2, 5).value)
+                    hdd_price = float(hdd.cell(2, 4).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '2':
                     choice = hdd.cell(3, 2).value
-                    hdd_price = float(hdd.cell(3, 5).value)
+                    hdd_price = float(hdd.cell(3, 4).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '3':
                     choice = hdd.cell(4, 2).value
-                    hdd_price = float(hdd.cell(4, 5).value)
+                    hdd_price = float(hdd.cell(4, 4).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '4':
                     choice = hdd.cell(5, 2).value
-                    hdd_price = float(hdd.cell(5, 5).value)
+                    hdd_price = float(hdd.cell(5, 4).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '5':
                     choice = hdd.cell(6, 2).value
-                    hdd_price = float(hdd.cell(6, 5).value)
+                    hdd_price = float(hdd.cell(6, 4).value)
                     HDD_SELECTED = HDD_SELECTED + 1
 
                 else:
@@ -598,8 +1096,9 @@ def shop_intro():
     slow_print("==========================")
     print("\nPRESS ENTER TO BEGIN")
     print("\nTYPE \"ADMIN\" TO ENTER ADMIN CONSOLE")
-    enter = input("")
-    if enter == 'admin' or 'ADMIN':
+    enter = str(input(""))
+    console_entry = ['admin','ADMIN']
+    if enter in console_entry:
         slow_print("Proceeding to login screen...")
         clear()
         admin_verify()

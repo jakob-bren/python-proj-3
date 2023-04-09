@@ -64,6 +64,7 @@ def admin_verify():
         user_list = ['ulaidh', 'root']
         pass_list = ['dundalklouth', 'xY48428z!#2q']
         if user_name in user_list and pass_word in pass_list:
+            # basic input validation against predefined arrays
             print("Credentials verified! Proceeding...")
             time.sleep(3)
             clear()
@@ -71,7 +72,7 @@ def admin_verify():
         elif user_name in user_list and pass_word not in pass_list:
             print("Password incorrect. Please try again.")
             pass_word = input("Password: ")
-            if pass_word == 'dundalklouth':
+            if pass_word in pass_list:
                 print("Thanks. Password verified."
                       "\nProceeding... ")
                 admin_console()
@@ -101,7 +102,9 @@ def admin_console():
     """Administrative console for managing backend."""
     while True:
         def input_menu():
-            print("Do you want to...")
+            # trying to avoid redundancy
+            # by predefining edit menu
+            print("\nDo you want to...")
             print("     1-- Modify description")
             print("     2-- Update quantity")
             print("     3-- Update price")
@@ -121,9 +124,13 @@ def admin_console():
             time.sleep(4)
 
             def show_cpus():
+                # pull all data from CPU sheet at once
                 data = cpus.get_all_values()
                 table = PrettyTable()
+                # field names = top row of sheet
                 table.field_names = data[0]
+                # computers count from 0 upwards - this tells it
+                # to start from row 1 instead of row 0 for data
                 for row in data[1:]:
                     table.add_row(row)
                 print(table)
@@ -141,23 +148,24 @@ def admin_console():
                             nu_desc = input("Input new description.. ")
                             print(nu_desc)
                             cpus.update('B2', nu_desc)
+                            # replace cell content with user input
                             print("Success! Description updated to " +
                                   nu_desc)
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            cpus.update('E2', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                cpus.update('E2', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            cpus.update('F2', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                cpus.update('F2', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
                         if selected == '4':
                             break
 
@@ -174,18 +182,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            cpus.update('E3', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                cpus.update('E3', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            cpus.update('F3', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                cpus.update('F3', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -202,18 +214,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            cpus.update('E4', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                cpus.update('E4', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            cpus.update('F4', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                cpus.update('F4', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -230,18 +246,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            cpus.update('E5', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                cpus.update('E5', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            cpus.update('F5', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                cpus.update('F5', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
                 elif selected == 'exit':
@@ -284,18 +304,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            ram.update('C2', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                ram.update('C2', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            ram.update('D2', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                ram.update('D2', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -312,18 +336,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            ram.update('C3', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                ram.update('C3', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            ram.update('D3', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                ram.update('D3', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -340,18 +368,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            ram.update('C4', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                ram.update('C4', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            ram.update('D4', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                ram.update('D4', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -368,18 +400,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            ram.update('C5', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                ram.update('C5', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            ram.update('D5', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                ram.update('D5', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -408,7 +444,7 @@ def admin_console():
                 "Loading GPUs currently in stock, please be patient...")
             while True:
                 show_gpus()
-                selected = input("\nInput the number of your chosen gpus. "
+                selected = input("\nInput the number of your chosen GPU. "
                                  "\nType \"exit\" to return to console.")
                 if selected == '1':
                     while True:
@@ -423,18 +459,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            gpus.update('C2', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                gpus.update('C2', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            gpus.update('D2', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                gpus.update('D2', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -451,18 +491,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            gpus.update('C3', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                gpus.update('C3', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            gpus.update('D3', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                gpus.update('D3', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -479,18 +523,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            gpus.update('C4', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                gpus.update('C4', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            gpus.update('D4', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                gpus.update('D4', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -507,18 +555,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            gpus.update('C5', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                gpus.update('C5', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            gpus.update('D5', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                gpus.update('D5', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
                 elif selected == '5':
@@ -534,18 +586,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            gpus.update('C6', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                gpus.update('C6', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            gpus.update('D6', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                gpus.update('D6', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
                 elif selected == 'exit':
@@ -573,7 +629,7 @@ def admin_console():
                 "Loading HDDs currently in stock, please be patient...")
             while True:
                 show_hdd()
-                selected = input("\nInput the number of your chosen HDD. "
+                selected = input("\nInput the ID of your chosen HDD. "
                                  "\nType \"exit\" to return to console.")
                 if selected == '1':
                     while True:
@@ -588,18 +644,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            hdd.update('C2', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                hdd.update('C2', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            hdd.update('D2', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                hdd.update('D2', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -616,18 +676,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            hdd.update('C3', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                hdd.update('C3', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            hdd.update('D3', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                hdd.update('D3', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -644,18 +708,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            hdd.update('C4', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                hdd.update('C4', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            hdd.update('D4', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                hdd.update('D4', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
 
@@ -672,21 +740,25 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            hdd.update('C5', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                hdd.update('C5', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            hdd.update('D5', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                hdd.update('D5', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
-                elif selected == '4':
+                elif selected == '5':
                     while True:
                         input_menu()
                         selected = input("Choose one.. ")
@@ -699,18 +771,22 @@ def admin_console():
                             time.sleep(4)
                         if selected == '2':
                             nu_qty = input("Input new quantity.. ")
-                            print(nu_qty)
-                            hdd.update('C6', (int(nu_qty)))
-                            print("Success! Quantity updated to " +
-                                  nu_qty)
-                            time.sleep(4)
+                            if nu_qty.isdigit():
+                                hdd.update('C6', (int(nu_qty)))
+                                print("Success! Quantity updated to " +
+                                      nu_qty)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '3':
                             nu_price = input("Input new price.. ")
-                            print(nu_price)
-                            hdd.update('D6', (float(nu_price)))
-                            print("Success! Price updated to " +
-                                  nu_price)
-                            time.sleep(4)
+                            if nu_price.isdecimal() or nu_price.isdigit():
+                                hdd.update('D5', (float(nu_price)))
+                                print("Success! Price updated to " +
+                                      nu_price)
+                                time.sleep(4)
+                            else:
+                                print("Numbers only please")
                         if selected == '4':
                             break
                 elif selected == 'exit':
@@ -740,6 +816,9 @@ def admin_console():
 
 def main_menu():
     """Displays the main menu and holds most of the program functions."""
+    # Declare these as global so we can change them locally while
+    # maintaining global access. Important for auto-proceeding
+    # once all items are picked.
     global CPU_SELECTED
     global RAM_SELECTED
     global GPU_SELECTED
@@ -774,6 +853,8 @@ def main_menu():
             slow_print("2 -- Exit Web Application")
             selected = input("Please pick from the above options... ")
             if selected == '1':
+                # re-initialize program
+                # and return to menu
                 CPU_SELECTED = 0
                 GPU_SELECTED = 0
                 RAM_SELECTED = 0
@@ -782,9 +863,11 @@ def main_menu():
                 print("Returning to main menu....")
                 continue
             elif selected == '2':
+                # stop Python app completely
                 close_prog()
         else:
             menu_logo = pyfiglet.figlet_format("MAIN MENU")
+            # cute little logo from pyfiglet
             print(menu_logo)
             slow_print("1 -- CPU Stocklist")
             slow_print("2 -- RAM Stocklist")
@@ -811,18 +894,25 @@ def main_menu():
                     show_cpus()
                     print("Loaded. To exit, type \"exit\".")
                     new_qty = 0
+                    # gave me a bug if I didn't declare new_qty at start
                     choice = None
-                    selected = input("\nInput the number of your chosen CPU.")
+                    selected = input("\nInput the ID of your desired CPU.")
                     if selected == '1':
                         this_qty = cpus.acell('E2').value
                         if this_qty == '0':
+                            # if quantity is zero,
+                            # restart loop
                             print("Out of stock.")
                             time.sleep(1.5)
                         elif this_qty >= '1':
+                            # else, if item is in stock,
+                            # add it to the basket.
                             choice = cpus.cell(2, 2).value
                             cpu_price = float(cpus.cell(2, 6).value)
                             CPU_SELECTED = CPU_SELECTED + 1
+                            # add 1 to CPU_SELECTED variable
                             new_qty = int(this_qty) - 1
+                            # rm 1 from quantity entry in sheet
                             cpus.update('E2', new_qty)
                     elif selected == '2':
                         this_qty = cpus.acell('E3').value
@@ -860,15 +950,20 @@ def main_menu():
                     elif selected == "exit":
                         break
                     elif selected >= '5' or selected < '1':
+                        # if input is out of range of accepted inputs
+                        # restart loop and do not proceed
                         print("Not a valid selection choice. "
                               "Please try again.")
                         time.sleep(2)
                         clear()
                     elif selected.isalpha() and selected != "exit":
+                        # not sure this will ever be reached;
+                        # but useful as a failsafe
                         print("Invalid input. Try again.")
                         time.sleep(3)
                         clear()
                     if choice:
+                        # if choice is not null, update sheet and break loop
                         partslist.update('A2', choice)
                         partslist.update('E3', cpu_price)
                         print("\nSuccess! " + choice + " added to basket."
@@ -878,6 +973,7 @@ def main_menu():
                         break
 
             elif selected == '2':
+                # RAM menu starts here
                 clear()
                 time.sleep(4)
 
@@ -892,8 +988,10 @@ def main_menu():
                     "Loading RAM currently in stock, please be patient...")
                 while True:
                     show_ram()
+                    print("Loaded. To exit, type \"exit\".")
+                    new_qty = 0
                     choice = None
-                    selected = input("Input the number of your chosen RAM.")
+                    selected = input("\nInput the number of your desired RAM.")
                     if selected == '1':
                         this_qty = ram.acell('C2').value
                         if this_qty == '0':
@@ -938,6 +1036,8 @@ def main_menu():
                             RAM_SELECTED = RAM_SELECTED + 1
                             new_qty = int(this_qty) - 1
                             ram.update('C5', new_qty)
+                    elif selected == "exit":
+                        break
                     else:
                         print("Not a valid selection choice. "
                               "Please try again.")
@@ -952,6 +1052,7 @@ def main_menu():
                         clear()
                         break
             elif selected == '3':
+                # GPU menu starts here
                 clear()
                 time.sleep(4)
 
@@ -966,8 +1067,10 @@ def main_menu():
                     "Loading GPUs currently in stock, please be patient...")
                 while True:
                     show_gpus()
+                    print("Loaded. To exit, type \"exit\".")
                     choice = None
-                    selected = input("Input the number of your chosen GPU.")
+                    new_qty = 0
+                    selected = input("\nInput the ID of your desired GPU.")
                     if selected == '1':
                         this_qty = gpus.acell('C2').value
                         if this_qty == '0':
@@ -1023,6 +1126,8 @@ def main_menu():
                             GPU_SELECTED = GPU_SELECTED + 1
                             new_qty = int(this_qty) - 1
                             gpus.update('C6', new_qty)
+                    elif selected == "exit":
+                        break
                     else:
                         print("Not a valid selection choice. "
                               "Please try again.")
@@ -1037,6 +1142,7 @@ def main_menu():
                         clear()
                         break
             elif selected == '4':
+                # HDD menu starts here
                 clear()
                 time.sleep(4)
 
@@ -1051,6 +1157,9 @@ def main_menu():
                     "Loading HDDs currently in stock, please be patient...")
                 while True:
                     show_hdd()
+                    print("Loaded. To exit, type \"exit\".")
+                    choice = None
+                    new_qty = 0
                     selected = input("\nInput the ID of your chosen HDD. ")
                     if selected == '1':
                         this_qty = hdd.acell('C2').value
@@ -1107,6 +1216,8 @@ def main_menu():
                             HDD_SELECTED = HDD_SELECTED + 1
                             new_qty = int(this_qty) - 1
                             hdd.update('C6', new_qty)
+                    elif selected == "exit":
+                        break
                     else:
                         print("Not a valid selection choice. "
                               "Please try again.")
@@ -1129,6 +1240,10 @@ def main_menu():
                 total_price = partslist.acell('E7').value
 
                 if cpu_choice and CPU_SELECTED >= 1:
+                    # if partslist A2 value is not null
+                    # and: if user has picked a CPU at least once
+                    # (same applies for other codeblocks in this
+                    # section)
                     print(cpu_choice)
 
                 else:
@@ -1152,7 +1267,7 @@ def main_menu():
                 else:
                     print("No HDD selected yet.")
 
-                time.sleep(5)
+                time.sleep(2.5)
 
                 slow_print("\n1 -- Return to main menu")
                 slow_print("2 -- View item prices and subtotal")
@@ -1165,6 +1280,7 @@ def main_menu():
                 elif selected == '2':
                     clear()
                     if CPU_SELECTED >= 1:
+                        # if user has picked a CPU at least once
                         price_cpu = partslist.acell('E3').value
                         print(cpu_choice + " costs €" + price_cpu)
 
@@ -1215,6 +1331,7 @@ def main_menu():
                         ban = pyfiglet.figlet_format(
                             "You have \n been \n banned", font="doom")
                         print(ban)
+                        # A little easter egg for my own amusement.
                         time.sleep(4)
                         sys.exit()
 
@@ -1243,12 +1360,14 @@ def shop_intro():
     print(logo)
     print("(C)1992 DIGITAL COMPUTER PARTS LTD")
     slow_print("POWERED BY MINITEL")
-    slow_print("==========================")
+    slow_print("============================")
     print("\nPRESS ENTER TO BEGIN")
     print("\nTYPE \"ADMIN\" TO ENTER ADMIN CONSOLE")
-    enter = str(input(""))
+    enter = input("")
     console_entry = ['admin', 'ADMIN']
     if enter in console_entry:
+        # if input matches data from array, proceed
+        # to admin console. otherwise don't go there
         slow_print("Proceeding to login screen...")
         clear()
         admin_verify()

@@ -34,6 +34,7 @@ RAM_SELECTED = 0
 GPU_SELECTED = 0
 HDD_SELECTED = 0
 
+
 def close_prog():
     """Closes the program."""
     clear()
@@ -52,6 +53,186 @@ def slow_print(msg):
     """Prints after a small delay."""
     print(msg)
     time.sleep(1)
+
+
+def admin_verify():
+    while True:
+        slow_print("Input credentials to continue.")
+        user_name = input("Username: ")
+        pass_word = input("Password: ")
+        if user_name == 'admin' and pass_word == 'dundalklouth':
+            print("Credentials verified! Proceeding...")
+            admin_console()
+        elif user_name == 'admin' and pass_word != 'dundalklouth':
+            print("Password incorrect. Please try again.")
+            pass_word = input("Password: ")
+            if pass_word == 'dundalklouth':
+                print("Thanks. Password verified."
+                      "\nProceeding... ")
+                admin_console()
+
+
+def admin_console():
+    while True:
+        slow_print("1 -- Check/modify CPU stock")
+        slow_print("2 -- Check/modify RAM Stocklist")
+        slow_print("3 -- Check/modify GPU Stocklist")
+        slow_print("4 -- Check/modify Storage Drive Stocklist")
+        slow_print("5 -- Exit Console")
+
+        selected = input("Please pick from the above options... ")
+        if selected == '1':
+            clear()
+            time.sleep(4)
+
+            def show_cpus():
+                data = cpus.get_all_values()
+                table = PrettyTable()
+                table.field_names = data[0]
+                for row in data[1:]:
+                    table.add_row(row)
+                print(table)
+            slow_print(
+                "Loading CPUs currently in stock, please be patient...")
+            show_cpus()
+            selected = input("\nInput the number of your chosen CPU.")
+            if selected == '1':
+                choice = cpus.cell(2, 2).value
+                cpu_price = float(cpus.cell(2, 6).value)
+            elif selected == '2':
+                choice = cpus.cell(3, 2).value
+                cpu_price = float(cpus.cell(3, 6).value)
+            elif selected == '3':
+                choice = cpus.cell(4, 2).value
+                cpu_price = float(cpus.cell(4, 6).value)
+            elif selected == '4':
+                choice = cpus.cell(5, 2).value
+                cpu_price = float(cpus.cell(5, 6).value)
+
+            else:
+                print("Not a valid selection choice. Exiting....")
+
+            clear()
+            time.sleep(4)
+            continue
+
+        elif selected == '2':
+            clear()
+            time.sleep(4)
+
+            def show_ram():
+                data = ram.get_all_values()
+                table = PrettyTable()
+                table.field_names = data[0]
+                for row in data[1:]:
+                    table.add_row(row)
+                print(table)
+            slow_print(
+                "Loading RAM currently in stock, please be patient...")
+            show_ram()
+            selected = input("Input the number of your chosen RAM.")
+            if selected == '1':
+                choice = ram.cell(2, 2).value
+                ram_price = float(ram.cell(2, 4).value)
+            elif selected == '2':
+                choice = ram.cell(3, 2).value
+                ram_price = float(ram.cell(3, 4).value)
+            elif selected == '3':
+                choice = ram.cell(4, 2).value
+                ram_price = float(ram.cell(4, 4).value)
+            elif selected == '4':
+                choice = ram.cell(5, 2).value
+                ram_price = float(ram.cell(5, 4).value)
+            else:
+                print("Not a valid selection choice. Exiting....")
+                main_menu()
+
+            clear()
+            time.sleep(4)
+
+        elif selected == '3':
+            clear()
+            time.sleep(4)
+
+            def show_gpus():
+                data = gpus.get_all_values()
+                table = PrettyTable()
+                table.field_names = data[0]
+                for row in data[1:]:
+                    table.add_row(row)
+                print(table)
+            slow_print(
+                "Loading GPUs currently in stock, please be patient...")
+            show_gpus()
+            selected = input("Input the number of your chosen GPU.")
+            if selected == '1':
+                choice = gpus.cell(2, 2).value
+                gpus_price = float(gpus.cell(2, 5).value)
+            elif selected == '2':
+                choice = gpus.cell(3, 2).value
+                gpus_price = float(gpus.cell(3, 5).value)
+            elif selected == '3':
+                choice = gpus.cell(4, 2).value
+                gpus_price = float(gpus.cell(4, 5).value)
+            elif selected == '4':
+                choice = gpus.cell(5, 2).value
+                gpus_price = float(gpus.cell(5, 5).value)
+            elif selected == '5':
+                choice = gpus.cell(6, 2).value
+                gpus_price = float(gpus.cell(6, 5).value)
+            else:
+                print("Not a valid selection choice. Exiting....")
+                main_menu()
+            clear()
+            time.sleep(4)
+
+        elif selected == '4':
+            clear()
+            time.sleep(4)
+
+            def show_hdd():
+                data = hdd.get_all_values()
+                table = PrettyTable()
+                table.field_names = data[0]
+                for row in data[1:]:
+                    table.add_row(row)
+                print(table)
+            slow_print(
+                "Loading HDDs currently in stock, please be patient...")
+            show_hdd()
+            selected = input("\nInput the ID of your chosen HDD. ")
+            if selected == '1':
+                choice = hdd.cell(2, 2).value
+                hdd_price = float(hdd.cell(2, 5).value)
+            elif selected == '2':
+                choice = hdd.cell(3, 2).value
+                hdd_price = float(hdd.cell(3, 5).value)
+            elif selected == '3':
+                choice = hdd.cell(4, 2).value
+                hdd_price = float(hdd.cell(4, 5).value)
+            elif selected == '4':
+                choice = hdd.cell(5, 2).value
+                hdd_price = float(hdd.cell(5, 5).value)
+            elif selected == '5':
+                choice = hdd.cell(6, 2).value
+                hdd_price = float(hdd.cell(6, 5).value)
+
+            else:
+                print("Not a valid selection choice. Exiting....")
+                admin_console()
+
+            time.sleep(4)
+            clear()
+
+        elif selected == '5':
+            slow_print("Are you sure?")
+            slow_print("1 -- Yes, exit now")
+            slow_print("2 -- Return to main console")
+            selected = input("")
+            if selected == '1':
+                close_prog()
+            elif selected == '2':
+                admin_console()
 
 
 def main_menu():
@@ -111,7 +292,6 @@ def main_menu():
             if selected == '1':
                 clear()
                 time.sleep(4)
-                cpu_list = len(cpus.col_values(1)[1:])
 
                 def show_cpus():
                     data = cpus.get_all_values()
@@ -153,44 +333,33 @@ def main_menu():
             elif selected == '2':
                 clear()
                 time.sleep(4)
-                ram_list = len(ram.col_values(1)[1:])
 
                 def show_ram():
-                    for x in range(ram_list):
-                        if ram.cell((2 + x), 1).value is not None:
-                            y = x + 1
-                            y_string = str(y)
-                            entry_name = ram.cell((2 + x), 1)
-                            entry_price = ram.cell((2 + x), 3)
-                            print("\n")
-                            print(
-                                y_string +
-                                ". : " +
-                                entry_name.value +
-                                "\n Price: €" +
-                                entry_price.value)
-
-                        elif x + 1 == range(ram_list):
-                            return
+                    data = ram.get_all_values()
+                    table = PrettyTable()
+                    table.field_names = data[0]
+                    for row in data[1:]:
+                        table.add_row(row)
+                    print(table)
                 slow_print(
                     "Loading RAM currently in stock, please be patient...")
                 show_ram()
                 selected = input("Input the number of your chosen RAM.")
                 if selected == '1':
-                    choice = ram.cell(2, 1).value
-                    ram_price = float(ram.cell(2, 3).value)
+                    choice = ram.cell(2, 2).value
+                    ram_price = float(ram.cell(2, 4).value)
                     RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '2':
-                    choice = ram.cell(3, 1).value
-                    ram_price = float(ram.cell(3, 3).value)
+                    choice = ram.cell(3, 2).value
+                    ram_price = float(ram.cell(3, 4).value)
                     RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '3':
-                    choice = ram.cell(4, 1).value
-                    ram_price = float(ram.cell(4, 3).value)
+                    choice = ram.cell(4, 2).value
+                    ram_price = float(ram.cell(4, 4).value)
                     RAM_SELECTED = RAM_SELECTED + 1
                 elif selected == '4':
-                    choice = ram.cell(5, 1).value
-                    ram_price = float(ram.cell(5, 3).value)
+                    choice = ram.cell(5, 2).value
+                    ram_price = float(ram.cell(5, 4).value)
                     RAM_SELECTED = RAM_SELECTED + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
@@ -204,52 +373,37 @@ def main_menu():
             elif selected == '3':
                 clear()
                 time.sleep(4)
-                gpus_list = len(gpus.col_values(1)[1:])
 
                 def show_gpus():
-                    for x in range(gpus_list):
-                        if gpus.cell((2 + x), 1).value is not None:
-                            y = x + 1
-                            y_string = str(y)
-                            entry_name = gpus.cell((2 + x), 1)
-                            entry_vram = gpus.cell((2 + x), 2)
-                            entry_price = gpus.cell((2 + x), 4)
-                            print("\n")
-                            print(
-                                y_string +
-                                ". : " +
-                                entry_name.value +
-                                " " +
-                                entry_vram.value +
-                                " " +
-                                "\n Price: €" +
-                                entry_price.value)
-
-                        elif x + 1 == range(gpus_list):
-                            return
+                    data = gpus.get_all_values()
+                    table = PrettyTable()
+                    table.field_names = data[0]
+                    for row in data[1:]:
+                        table.add_row(row)
+                    print(table)
                 slow_print(
                     "Loading GPUs currently in stock, please be patient...")
                 show_gpus()
                 selected = input("Input the number of your chosen GPU.")
                 if selected == '1':
-                    choice = gpus.cell(2, 1).value
-                    gpus_price = float(gpus.cell(2, 4).value)
+                    choice = gpus.cell(2, 2).value
+                    gpus_price = float(gpus.cell(2, 5).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '2':
-                    choice = gpus.cell(3, 1).value
-                    gpus_price = float(gpus.cell(3, 4).value)
+                    choice = gpus.cell(3, 2).value
+                    gpus_price = float(gpus.cell(3, 5).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '3':
-                    choice = gpus.cell(4, 1).value
-                    gpus_price = float(gpus.cell(4, 4).value)
+                    choice = gpus.cell(4, 2).value
+                    gpus_price = float(gpus.cell(4, 5).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '4':
-                    choice = gpus.cell(5, 1).value
-                    gpus_price = float(gpus.cell(5, 4).value)
+                    choice = gpus.cell(5, 2).value
+                    gpus_price = float(gpus.cell(5, 5).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 elif selected == '5':
-                    choice = gpus.cell(6, 1).value
-                    gpus_price = float(gpus.cell(6, 4).value)
+                    choice = gpus.cell(6, 2).value
+                    gpus_price = float(gpus.cell(6, 5).value)
                     GPU_SELECTED = GPU_SELECTED + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
@@ -262,52 +416,37 @@ def main_menu():
             elif selected == '4':
                 clear()
                 time.sleep(4)
-                hdd_list = len(hdd.col_values(1)[1:])
 
                 def show_hdd():
-                    for x in range(hdd_list):
-                        if hdd.cell((2 + x), 1).value is not None:
-                            y = x + 1
-                            y_string = str(y)
-                            entry_name = hdd.cell((2 + x), 1)
-                            entry_rpm = hdd.cell((2 + x), 2)
-                            entry_price = hdd.cell((2 + x), 4)
-                            print("\n")
-                            print(
-                                y_string +
-                                ". : " +
-                                entry_name.value +
-                                " " +
-                                entry_rpm.value +
-                                "RPM " +
-                                "\n Price: €" +
-                                entry_price.value)
-
-                        elif x + 1 == range(hdd_list):
-                            return
+                    data = hdd.get_all_values()
+                    table = PrettyTable()
+                    table.field_names = data[0]
+                    for row in data[1:]:
+                        table.add_row(row)
+                    print(table)
                 slow_print(
                     "Loading HDDs currently in stock, please be patient...")
                 show_hdd()
-                selected = input("Input the number of your chosen HDD.")
+                selected = input("\nInput the ID of your chosen HDD. ")
                 if selected == '1':
-                    choice = hdd.cell(2, 1).value
-                    hdd_price = float(hdd.cell(2, 4).value)
+                    choice = hdd.cell(2, 2).value
+                    hdd_price = float(hdd.cell(2, 5).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '2':
-                    choice = hdd.cell(3, 1).value
-                    hdd_price = float(hdd.cell(3, 4).value)
+                    choice = hdd.cell(3, 2).value
+                    hdd_price = float(hdd.cell(3, 5).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '3':
-                    choice = hdd.cell(4, 1).value
-                    hdd_price = float(hdd.cell(4, 4).value)
+                    choice = hdd.cell(4, 2).value
+                    hdd_price = float(hdd.cell(4, 5).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '4':
-                    choice = hdd.cell(5, 1).value
-                    hdd_price = float(hdd.cell(5, 4).value)
+                    choice = hdd.cell(5, 2).value
+                    hdd_price = float(hdd.cell(5, 5).value)
                     HDD_SELECTED = HDD_SELECTED + 1
                 elif selected == '5':
-                    choice = hdd.cell(6, 1).value
-                    hdd_price = float(hdd.cell(6, 4).value)
+                    choice = hdd.cell(6, 2).value
+                    hdd_price = float(hdd.cell(6, 5).value)
                     HDD_SELECTED = HDD_SELECTED + 1
 
                 else:
@@ -316,8 +455,9 @@ def main_menu():
 
                 partslist.update('D2', choice)
                 partslist.update('E6', hdd_price)
-                clear()
+                print("\nSuccess! " + choice + " added to basket.")
                 time.sleep(4)
+                clear()
             elif selected == '5':
                 clear()
                 cpu_choice = partslist.acell('A2').value
@@ -442,11 +582,17 @@ def shop_intro():
     print("(C)1992 DIGITAL COMPUTER PARTS LTD")
     slow_print("POWERED BY MINITEL")
     slow_print("==========================")
-    print("PRESS ANY KEY TO ENTER")
-    input("")
-    slow_print("Proceeding...")
-    clear()
-    main_menu()
+    print("\nPRESS ENTER TO BEGIN")
+    print("\nTYPE \"ADMIN\" TO ENTER ADMIN CONSOLE")
+    enter = input("")
+    if enter == 'admin' or 'ADMIN':
+        slow_print("Proceeding to login screen...")
+        clear()
+        admin_verify()
+    else:
+        slow_print("Proceeding...")
+        clear()
+        main_menu()
 
 
 shop_intro()

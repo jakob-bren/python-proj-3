@@ -85,6 +85,12 @@ def admin_console():
             clear()
             time.sleep(4)
 
+            def input_menu():
+                print("Do you want to...")
+                print("     1-- Modify description")
+                print("     2-- Update quantity")
+                print("     3-- Update price")
+
             def show_cpus():
                 data = cpus.get_all_values()
                 table = PrettyTable()
@@ -97,8 +103,16 @@ def admin_console():
             show_cpus()
             selected = input("\nInput the number of your chosen CPU.")
             if selected == '1':
-                choice = cpus.cell(2, 2).value
-                cpu_price = float(cpus.cell(2, 6).value)
+                input_menu()
+                selected = input("Choose one.. ")
+                if selected == '2':
+                    nu_qty = input("Input new quantity..")
+                    print(nu_qty)
+                    cpus.update('E2', (int(nu_qty)))
+                    print("Success! Quantity updated to " +
+                          nu_qty)
+                    time.sleep(4)
+                    
             elif selected == '2':
                 choice = cpus.cell(3, 2).value
                 cpu_price = float(cpus.cell(3, 6).value)

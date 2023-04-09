@@ -2,8 +2,10 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import os
+import sys
 import time
 import gspread
+import pyfiglet
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -25,6 +27,12 @@ cpu_selected = 0
 ram_selected = 0
 gpu_selected = 0
 hdd_selected = 0
+
+
+def quit():
+    clear()
+    slow_print("Bye for now....")
+    sys.exit()
 
 
 def clear():
@@ -87,15 +95,14 @@ def main_menu():
                 print("Returning to main menu....")
                 continue
             elif selected == '2':
-                clear()
-                slow_print("Bye for now....")
-                break
+                quit()
         else:
             slow_print("1 -- CPU Stocklist")
             slow_print("2 -- RAM Stocklist")
             slow_print("3 -- GPU Stocklist")
             slow_print("4 -- Storage Drive Stocklist")
             slow_print("5 -- Exit Store")
+            slow_print("6 -- View Parts List")
             selected = input("Please pick from the above options... ")
             if selected == '1':
                 clear()
@@ -330,14 +337,119 @@ def main_menu():
                 clear()
                 time.sleep(4)
 
+            elif selected == '5':
+                slow_print("Are you sure?")
+                slow_print("1 -- Yes, exit now")
+                slow_print("2 -- Return to main menu")
+                selected = input("")
+                if selected == '1':
+                    quit()
+                elif selected == '2':
+                    main_menu()
+
+            elif selected == '6':
+                clear()
+                cpu_choice = partslist.acell('A2').value
+                ram_choice = partslist.acell('B2').value
+                gpu_choice = partslist.acell('C2').value
+                hdd_choice = partslist.acell('D2').value
+                total_price = partslist.acell('E7').value
+
+                if cpu_choice and cpu_selected >= 1:
+                    print(cpu_choice)
+                
+                else:
+                    print("No CPU selected yet.")
+                
+                if ram_choice and ram_selected >= 1:
+                    print(ram_choice)
+                
+                else:
+                    print("No RAM selected yet.")
+
+                if gpu_choice and gpu_selected >= 1:
+                    print(gpu_choice)
+
+                else:
+                    print("No GPU selected yet.")
+
+                if hdd_choice and hdd_selected >= 1:
+                    print(hdd_choice)
+
+                else:
+                    print("No HDD selected yet.")
+
+                time.sleep(5)
+
+                slow_print("1 -- Return to main menu")
+                slow_print("2 -- View item prices and subtotal")
+                selected = input("Please pick from the above options...")
+
+                if selected == '1':
+                    clear()
+                    main_menu()
+
+                elif selected == '2':
+                    clear()
+                    if cpu_selected >= 1:
+                        price_cpu = partslist.acell('E3').value
+                        print(cpu_choice + " costs €" + price_cpu)
+                
+                    else:
+                        print("No CPU selected yet.")
+                    
+                    if ram_selected >= 1:
+                        price_ram = partslist.acell('E4').value
+                        print(ram_choice + " costs €" + price_ram)
+                    
+                    else:
+                        print("No RAM selected yet.")
+
+                    if gpu_selected >= 1:
+                        price_gpu = partslist.acell('E5').value
+                        print(gpu_choice + " costs €" + price_gpu)
+
+                    else:
+                        print("No GPU selected yet.")
+
+                    if hdd_selected >= 1:
+                        price_hdd = partslist.acell('E6').value
+                        print(hdd_choice + " costs €" + price_hdd)
+
+                    else:
+                        print("No HDD selected yet.")
+                    print("Subtotal: €" + total_price)
+
+                    time.sleep(4)
+
+                    print("Return to main menu?")
+                    slow_print("1 -- Yes")
+                    slow_print("2 -- No")
+                    selected = input("Please pick from the above options.")
+
+                    if selected == '1':
+                        main_menu()
+                    elif selected == '2':
+                        print("Where else do you think you can go from here??")
+                        hell = pyfiglet.figlet_format("Go Directly To Hell")
+                        print(hell)
+                        time.sleep(4)
+                        sys.exit()
+
+                continue
+
 
 def shop_intro():
+    print("/n")
+    logo = pyfiglet.figlet_format("DCP SOLUTIONS")
+    print(logo)
     print("(C)1992 DIGITAL COMPUTER PARTS LTD")
     slow_print("POWERED BY MINITEL")
     slow_print("==========================")
     print("PRESS ANY KEY TO ENTER")
     input("")
     slow_print("Proceeding...")
+    clear()
     main_menu()
 
 

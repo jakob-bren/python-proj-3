@@ -137,30 +137,25 @@ def main_menu():
                 if selected == '1':
                     choice = cpus.cell(2, 1).value
                     cpu_price = float(cpus.cell(2, 5).value)
-                    partslist.update('A2', choice)
-                    partslist.update('E3', cpu_price)
                     cpu_selected = cpu_selected + 1
                 elif selected == '2':
                     choice = cpus.cell(3, 1).value
                     cpu_price = float(cpus.cell(3, 5).value)
-                    partslist.update('A2', choice)
-                    partslist.update('E3', cpu_price)
                     cpu_selected = cpu_selected + 1
                 elif selected == '3':
                     choice = cpus.cell(4, 1).value
                     cpu_price = float(cpus.cell(4, 5).value)
-                    partslist.update('A2', choice)
-                    partslist.update('E3', cpu_price)
                     cpu_selected = cpu_selected + 1
                 elif selected == '4':
                     choice = cpus.cell(5, 1).value
                     cpu_price = float(cpus.cell(5, 5).value)
-                    partslist.update('A2', choice)
-                    partslist.update('E3', cpu_price)
                     cpu_selected = cpu_selected + 1
 
                 else:
                     print("Not a valid selection choice. Exiting....")
+
+                partslist.update('A2', choice)
+                partslist.update('E3', cpu_price)
                 clear()
                 time.sleep(4)
                 continue
@@ -194,32 +189,25 @@ def main_menu():
                 if selected == '1':
                     choice = ram.cell(2, 1).value
                     ram_price = float(ram.cell(2, 3).value)
-                    partslist.update('B2', choice)
-                    partslist.update('E4', ram_price)
                     ram_selected = ram_selected + 1
                 elif selected == '2':
                     choice = ram.cell(3, 1).value
                     ram_price = float(ram.cell(3, 3).value)
-                    partslist.update('B2', choice)
-                    partslist.update('E4', ram_price)
                     ram_selected = ram_selected + 1
                 elif selected == '3':
                     choice = ram.cell(4, 1).value
                     ram_price = float(ram.cell(4, 3).value)
-                    partslist.update('B2', choice)
-                    partslist.update('E4', ram_price)
                     ram_selected = ram_selected + 1
                 elif selected == '4':
                     choice = ram.cell(5, 1).value
                     ram_price = float(ram.cell(5, 3).value)
-                    partslist.update('B2', choice)
-                    partslist.update('E4', ram_price)
                     ram_selected = ram_selected + 1
                 else:
                     print("Not a valid selection choice. Exiting....")
                     main_menu()
-                    selected = input("Please pick from the above options... ")
-
+                
+                partslist.update('B2', choice)
+                partslist.update('E4', ram_price)
                 clear()
                 time.sleep(4)
 
@@ -314,18 +302,23 @@ def main_menu():
                 if selected == '1':
                     choice = hdd.cell(2, 1).value
                     hdd_price = float(hdd.cell(2, 4).value)
+                    hdd_selected = hdd_selected + 1
                 elif selected == '2':
                     choice = hdd.cell(3, 1).value
                     hdd_price = float(hdd.cell(3, 4).value)
+                    hdd_selected = hdd_selected + 1
                 elif selected == '3':
                     choice = hdd.cell(4, 1).value
                     hdd_price = float(hdd.cell(4, 4).value)
+                    hdd_selected = hdd_selected + 1
                 elif selected == '4':
                     choice = hdd.cell(5, 1).value
                     hdd_price = float(hdd.cell(5, 4).value)
+                    hdd_selected = hdd_selected + 1
                 elif selected == '5':
                     choice = hdd.cell(6, 1).value
                     hdd_price = float(hdd.cell(6, 4).value)
+                    hdd_selected = hdd_selected + 1
                     
                 else:
                     print("Not a valid selection choice. Exiting....")
@@ -333,7 +326,6 @@ def main_menu():
 
                 partslist.update('D2', choice)
                 partslist.update('E6', hdd_price)
-                hdd_selected = hdd_selected + 1
                 clear()
                 time.sleep(4)
 

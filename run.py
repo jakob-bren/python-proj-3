@@ -807,33 +807,75 @@ def main_menu():
                     print(table)
                 slow_print(
                     "Loading CPUs currently in stock, please be patient...")
-                show_cpus()
-                selected = input("\nInput the number of your chosen CPU.")
-                if selected == '1':
-                    choice = cpus.cell(2, 2).value
-                    cpu_price = float(cpus.cell(2, 6).value)
-                    CPU_SELECTED = CPU_SELECTED + 1
-                elif selected == '2':
-                    choice = cpus.cell(3, 2).value
-                    cpu_price = float(cpus.cell(3, 6).value)
-                    CPU_SELECTED = CPU_SELECTED + 1
-                elif selected == '3':
-                    choice = cpus.cell(4, 2).value
-                    cpu_price = float(cpus.cell(4, 6).value)
-                    CPU_SELECTED = CPU_SELECTED + 1
-                elif selected == '4':
-                    choice = cpus.cell(5, 2).value
-                    cpu_price = float(cpus.cell(5, 6).value)
-                    CPU_SELECTED = CPU_SELECTED + 1
-
-                else:
-                    print("Not a valid selection choice. Exiting....")
-
-                partslist.update('A2', choice)
-                partslist.update('E3', cpu_price)
-                clear()
-                time.sleep(4)
-                continue
+                while True:
+                    show_cpus()
+                    print("Loaded. To exit, type \"exit\".")
+                    new_qty = 0
+                    choice = None
+                    selected = input("\nInput the number of your chosen CPU.")
+                    if selected == '1':
+                        this_qty = cpus.acell('E2').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = cpus.cell(2, 2).value
+                            cpu_price = float(cpus.cell(2, 6).value)
+                            CPU_SELECTED = CPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            cpus.update('E2', new_qty)
+                    elif selected == '2':
+                        this_qty = cpus.acell('E3').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = cpus.cell(3, 2).value
+                            cpu_price = float(cpus.cell(3, 6).value)
+                            CPU_SELECTED = CPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            cpus.update('E3', new_qty)
+                    elif selected == '3':
+                        this_qty = cpus.acell('E4').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = cpus.cell(4, 2).value
+                            cpu_price = float(cpus.cell(4, 6).value)
+                            CPU_SELECTED = CPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            cpus.update('E4', new_qty)
+                    elif selected == '4':
+                        this_qty = cpus.acell('E5').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = cpus.cell(5, 2).value
+                            cpu_price = float(cpus.cell(5, 6).value)
+                            CPU_SELECTED = CPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            cpus.update('E5', new_qty)
+                    elif selected == "exit":
+                        break
+                    elif selected >= '5' or selected < '1':
+                        print("Not a valid selection choice. "
+                              "Please try again.")
+                        time.sleep(2)
+                        clear()
+                    elif selected.isalpha() and selected != "exit":
+                        print("Invalid input. Try again.")
+                        time.sleep(3)
+                        clear()
+                    if choice:
+                        partslist.update('A2', choice)
+                        partslist.update('E3', cpu_price)
+                        print("\nSuccess! " + choice + " added to basket."
+                              "\n" + str(new_qty) + " left in stock.")
+                        time.sleep(4)
+                        clear()
+                        break
 
             elif selected == '2':
                 clear()
@@ -848,33 +890,67 @@ def main_menu():
                     print(table)
                 slow_print(
                     "Loading RAM currently in stock, please be patient...")
-                show_ram()
-                selected = input("Input the number of your chosen RAM.")
-                if selected == '1':
-                    choice = ram.cell(2, 2).value
-                    ram_price = float(ram.cell(2, 4).value)
-                    RAM_SELECTED = RAM_SELECTED + 1
-                elif selected == '2':
-                    choice = ram.cell(3, 2).value
-                    ram_price = float(ram.cell(3, 4).value)
-                    RAM_SELECTED = RAM_SELECTED + 1
-                elif selected == '3':
-                    choice = ram.cell(4, 2).value
-                    ram_price = float(ram.cell(4, 4).value)
-                    RAM_SELECTED = RAM_SELECTED + 1
-                elif selected == '4':
-                    choice = ram.cell(5, 2).value
-                    ram_price = float(ram.cell(5, 4).value)
-                    RAM_SELECTED = RAM_SELECTED + 1
-                else:
-                    print("Not a valid selection choice. Exiting....")
-                    main_menu()
-
-                partslist.update('B2', choice)
-                partslist.update('E4', ram_price)
-                clear()
-                time.sleep(4)
-
+                while True:
+                    show_ram()
+                    choice = None
+                    selected = input("Input the number of your chosen RAM.")
+                    if selected == '1':
+                        this_qty = ram.acell('C2').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = ram.cell(2, 2).value
+                            ram_price = float(ram.cell(2, 4).value)
+                            RAM_SELECTED = RAM_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            ram.update('C2', new_qty)
+                    elif selected == '2':
+                        this_qty = ram.acell('C3').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = ram.cell(3, 2).value
+                            ram_price = float(ram.cell(3, 4).value)
+                            RAM_SELECTED = RAM_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            ram.update('C3', new_qty)
+                    elif selected == '3':
+                        this_qty = ram.acell('C4').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = ram.cell(4, 2).value
+                            ram_price = float(ram.cell(4, 4).value)
+                            RAM_SELECTED = RAM_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            ram.update('C4', new_qty)
+                    elif selected == '4':
+                        this_qty = ram.acell('C5').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = ram.cell(5, 2).value
+                            ram_price = float(ram.cell(5, 4).value)
+                            RAM_SELECTED = RAM_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            ram.update('C5', new_qty)
+                    else:
+                        print("Not a valid selection choice. "
+                              "Please try again.")
+                        time.sleep(5)
+                        clear()
+                    if choice:
+                        partslist.update('B2', choice)
+                        partslist.update('E4', ram_price)
+                        print("\nSuccess! " + choice + " added to basket."
+                              "\n" + str(new_qty) + " left in stock.")
+                        time.sleep(4)
+                        clear()
+                        break
             elif selected == '3':
                 clear()
                 time.sleep(4)
@@ -888,36 +964,78 @@ def main_menu():
                     print(table)
                 slow_print(
                     "Loading GPUs currently in stock, please be patient...")
-                show_gpus()
-                selected = input("Input the number of your chosen GPU.")
-                if selected == '1':
-                    choice = gpus.cell(2, 2).value
-                    gpus_price = float(gpus.cell(2, 4).value)
-                    GPU_SELECTED = GPU_SELECTED + 1
-                elif selected == '2':
-                    choice = gpus.cell(3, 2).value
-                    gpus_price = float(gpus.cell(3, 4).value)
-                    GPU_SELECTED = GPU_SELECTED + 1
-                elif selected == '3':
-                    choice = gpus.cell(4, 2).value
-                    gpus_price = float(gpus.cell(4, 4).value)
-                    GPU_SELECTED = GPU_SELECTED + 1
-                elif selected == '4':
-                    choice = gpus.cell(5, 2).value
-                    gpus_price = float(gpus.cell(5, 4).value)
-                    GPU_SELECTED = GPU_SELECTED + 1
-                elif selected == '5':
-                    choice = gpus.cell(6, 2).value
-                    gpus_price = float(gpus.cell(6, 4).value)
-                    GPU_SELECTED = GPU_SELECTED + 1
-                else:
-                    print("Not a valid selection choice. Exiting....")
-                    main_menu()
-                partslist.update('C2', choice)
-                partslist.update('E5', gpus_price)
-                clear()
-                time.sleep(4)
-
+                while True:
+                    show_gpus()
+                    choice = None
+                    selected = input("Input the number of your chosen GPU.")
+                    if selected == '1':
+                        this_qty = gpus.acell('C2').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = gpus.cell(2, 2).value
+                            gpus_price = float(gpus.cell(2, 4).value)
+                            GPU_SELECTED = GPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            gpus.update('C2', new_qty)
+                    elif selected == '2':
+                        this_qty = gpus.acell('C3').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = gpus.cell(3, 2).value
+                            gpus_price = float(gpus.cell(3, 4).value)
+                            GPU_SELECTED = GPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            gpus.update('C3', new_qty)
+                    elif selected == '3':
+                        this_qty = gpus.acell('C4').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = gpus.cell(4, 2).value
+                            gpus_price = float(gpus.cell(4, 4).value)
+                            GPU_SELECTED = GPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            gpus.update('C4', new_qty)
+                    elif selected == '4':
+                        this_qty = gpus.acell('C5').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = gpus.cell(5, 2).value
+                            gpus_price = float(gpus.cell(5, 4).value)
+                            GPU_SELECTED = GPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            gpus.update('C5', new_qty)
+                    elif selected == '5':
+                        this_qty = gpus.acell('C6').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = gpus.cell(6, 2).value
+                            gpus_price = float(gpus.cell(6, 4).value)
+                            GPU_SELECTED = GPU_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            gpus.update('C6', new_qty)
+                    else:
+                        print("Not a valid selection choice. "
+                              "Please try again.")
+                        time.sleep(2)
+                        clear()
+                    if choice:
+                        partslist.update('C2', choice)
+                        partslist.update('E5', gpus_price)
+                        print("\nSuccess! " + choice + " added to basket."
+                              "\n" + str(new_qty) + " left in stock.")
+                        time.sleep(4)
+                        clear()
+                        break
             elif selected == '4':
                 clear()
                 time.sleep(4)
@@ -931,38 +1049,77 @@ def main_menu():
                     print(table)
                 slow_print(
                     "Loading HDDs currently in stock, please be patient...")
-                show_hdd()
-                selected = input("\nInput the ID of your chosen HDD. ")
-                if selected == '1':
-                    choice = hdd.cell(2, 2).value
-                    hdd_price = float(hdd.cell(2, 4).value)
-                    HDD_SELECTED = HDD_SELECTED + 1
-                elif selected == '2':
-                    choice = hdd.cell(3, 2).value
-                    hdd_price = float(hdd.cell(3, 4).value)
-                    HDD_SELECTED = HDD_SELECTED + 1
-                elif selected == '3':
-                    choice = hdd.cell(4, 2).value
-                    hdd_price = float(hdd.cell(4, 4).value)
-                    HDD_SELECTED = HDD_SELECTED + 1
-                elif selected == '4':
-                    choice = hdd.cell(5, 2).value
-                    hdd_price = float(hdd.cell(5, 4).value)
-                    HDD_SELECTED = HDD_SELECTED + 1
-                elif selected == '5':
-                    choice = hdd.cell(6, 2).value
-                    hdd_price = float(hdd.cell(6, 4).value)
-                    HDD_SELECTED = HDD_SELECTED + 1
-
-                else:
-                    print("Not a valid selection choice. Exiting....")
-                    main_menu()
-
-                partslist.update('D2', choice)
-                partslist.update('E6', hdd_price)
-                print("\nSuccess! " + choice + " added to basket.")
-                time.sleep(4)
-                clear()
+                while True:
+                    show_hdd()
+                    selected = input("\nInput the ID of your chosen HDD. ")
+                    if selected == '1':
+                        this_qty = hdd.acell('C2').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = hdd.cell(2, 2).value
+                            hdd_price = float(hdd.cell(2, 4).value)
+                            HDD_SELECTED = HDD_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            hdd.update('C2', new_qty)
+                    elif selected == '2':
+                        this_qty = hdd.acell('C3').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = hdd.cell(3, 2).value
+                            hdd_price = float(hdd.cell(3, 4).value)
+                            HDD_SELECTED = HDD_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            hdd.update('C3', new_qty)
+                    elif selected == '3':
+                        this_qty = hdd.acell('C4').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = hdd.cell(4, 2).value
+                            hdd_price = float(hdd.cell(4, 4).value)
+                            HDD_SELECTED = HDD_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            hdd.update('C4', new_qty)
+                    elif selected == '4':
+                        this_qty = hdd.acell('C5').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = hdd.cell(5, 2).value
+                            hdd_price = float(hdd.cell(5, 4).value)
+                            HDD_SELECTED = HDD_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            hdd.update('C5', new_qty)
+                    elif selected == '5':
+                        this_qty = hdd.acell('C6').value
+                        if this_qty == '0':
+                            print("Out of stock.")
+                            time.sleep(1.5)
+                        elif this_qty >= '1':
+                            choice = hdd.cell(6, 2).value
+                            hdd_price = float(hdd.cell(6, 4).value)
+                            HDD_SELECTED = HDD_SELECTED + 1
+                            new_qty = int(this_qty) - 1
+                            hdd.update('C6', new_qty)
+                    else:
+                        print("Not a valid selection choice. "
+                              "Please try again.")
+                        time.sleep(2)
+                        clear()
+                    if choice:
+                        partslist.update('D2', choice)
+                        partslist.update('E6', hdd_price)
+                        print("\nSuccess! " + choice + " added to basket."
+                              "\n" + str(new_qty) + " left in stock.")
+                        time.sleep(4)
+                        clear()
+                        break
             elif selected == '5':
                 clear()
                 cpu_choice = partslist.acell('A2').value
@@ -1100,6 +1257,5 @@ def shop_intro():
         clear()
         main_menu()
 
+
 shop_intro()
-
-

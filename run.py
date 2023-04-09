@@ -141,35 +141,22 @@ def main_menu():
                     "Loading CPUs currently in stock, please be patient...")
                 show_cpus()
                 selected = input("Input the number of your chosen CPU.")
-                new_qty = 0
                 if selected == '1':
                     choice = cpus.cell(2, 1).value
                     cpu_price = float(cpus.cell(2, 5).value)
                     CPU_SELECTED = CPU_SELECTED + 1
-                    this_qty = cpus.acell('D2').value
-                    new_qty = int(this_qty) - 1
-                    cpus.update('D2', new_qty)
                 elif selected == '2':
                     choice = cpus.cell(3, 1).value
                     cpu_price = float(cpus.cell(3, 5).value)
                     CPU_SELECTED = CPU_SELECTED + 1
-                    this_qty = cpus.acell('D3').value
-                    new_qty = int(this_qty) - 1
-                    cpus.update('D3', new_qty)
                 elif selected == '3':
                     choice = cpus.cell(4, 1).value
                     cpu_price = float(cpus.cell(4, 5).value)
                     CPU_SELECTED = CPU_SELECTED + 1
-                    this_qty = int(cpus.acell('D4').value)
-                    new_qty = this_qty - 1
-                    cpus.update('D4', new_qty)
                 elif selected == '4':
                     choice = cpus.cell(5, 1).value
                     cpu_price = float(cpus.cell(5, 5).value)
                     CPU_SELECTED = CPU_SELECTED + 1
-                    this_qty = int(cpus.acell('D5').value)
-                    new_qty = this_qty - 1
-                    cpus.update('D5', new_qty)
 
                 else:
                     print("Not a valid selection choice. Exiting....")

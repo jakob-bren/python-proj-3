@@ -422,9 +422,10 @@ def main_menu():
                     if selected == '1':
                         main_menu()
                     elif selected == '2':
+                        clear()
                         print("Where else do you think you can go from here??")
-                        hell = pyfiglet.figlet_format("Go Directly To Hell")
-                        print(hell)
+                        ban = pyfiglet.figlet_format("You have \n been \n banned", font="doom")
+                        print(ban)
                         time.sleep(4)
                         sys.exit()
 
@@ -433,7 +434,7 @@ def main_menu():
 
 def shop_intro():
     print("/n")
-    logo = pyfiglet.figlet_format("DCP SOLUTIONS")
+    logo = pyfiglet.figlet_format("DCP", font="roman")
     print(logo)
     print("(C)1992 DIGITAL COMPUTER PARTS LTD")
     slow_print("POWERED BY MINITEL")

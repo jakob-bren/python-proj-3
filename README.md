@@ -108,6 +108,8 @@ This flowchart helped me on my way with planning and carrying out this project w
 
 * Quantity validation - if a part is out of stock, the user cannot add it to their basket. When the user selects a part, the quantity of the part is dynamically updated in both the spreadsheet and in the terminal interface.
 
+* All cells previously updated in relation to the prices of items selected by the user are set back to 0.00 whenever the app is restarted.
+
 * All pertinent data can be updated from the App itself in the admin console - you can update the description, price, or quantity for any given entry.
 
 * Admin account validation - when a username and password are inputted, both are checked against a list of pre-defined usernames and passwords - if both match, the admin may proceed, if not, they are either asked to re-input their credentials if either the username or username and password are wrong; or re-input their password if the password is wrong but the username is correct.

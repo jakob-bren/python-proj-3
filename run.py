@@ -846,8 +846,11 @@ def main_menu():
                 hdd_choice)
             print("Calculating total price....")
             time.sleep(4)
-            print("€" + total_price)
+            print("Final price is €" + total_price)
             time.sleep(8)
+            print("Thank you for shopping with DCP."
+                  "We hope you have a nice day.")
+            time.sleep(4)
             clear()
             slow_print("1 -- Return to start")
             slow_print("2 -- Exit Web Application")

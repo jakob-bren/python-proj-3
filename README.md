@@ -37,7 +37,7 @@ The name of my Code Institute PP3 app is "Digital Computer Parts LTD". It is a p
 
 - [random](https://docs.python.org/3/library/random.html) - Generate pseudo-random numbers 
 
-- [time](https://docs.python.org/3/library/time.html) - for implementing a sleep delay function
+- [time](https://docs.python.org/3/library/time.html) - for implementing a sleep delay function, initially to avoid rate-limiting but now it's just for show.
 
 - [sys](https://docs.python.org/3/library/sys.html) - System-specific parameters and functions
 
@@ -78,6 +78,17 @@ would also need a motherboard, power supply, case, etc etc - but for the sake of
 
 The live app is hosted here: https://partslistapp.herokuapp.com/
 
+The admin credentials are as follows:
+
+* Username: ulaidh
+* Password: dundalklouth
+
+Alternatively, you can also use:
+
+* Username: root
+* Password: xY48428z!#2q
+
+
 ## Flowchart
 
 This flowchart helped me on my way with planning and carrying out this project work.
@@ -87,11 +98,15 @@ This flowchart helped me on my way with planning and carrying out this project w
 
 ## Technical Features
 
+* Display data in a cute ASCII tabulated format - data from the spreadsheet regarding CPUs, GPUs, RAM and HDDs is displayed in a neat table.
+
 * Input listener - the app keeps track of whether and how many times you have selected a particular part, and runs a results screen once all four options have been selected.
+
+* Input validation - All the various input fields are checked for invalid inputs and the result of the input will not be passed if it does not match the field type or the requirements of the input box.
 
 * Subtotal checker - the app has a function for checking what parts have been selected, and the current subtotal price.
 
-* Quantity validation - if a part is out of stock, the user cannot add it to their basket.
+* Quantity validation - if a part is out of stock, the user cannot add it to their basket. When the user selects a part, the quantity of the part is dynamically updated in both the spreadsheet and in the terminal interface.
 
 * All pertinent data can be updated from the App itself in the admin console - you can update the description, price, or quantity for any given entry.
 
@@ -109,6 +124,8 @@ There are more features which I would have liked to add if I had the time, the p
 * I would have liked to introduce a "compatibility check" e.g you cannot use DDR3 memory with a 10th Gen Intel Processor, cannot use a 3dfx VooDoo with any modern processor, etc - but this would add to the complexity significantly and I wasn't comfortable enough at the time with Python to build a sort of logic map for how that would have worked.
 
 * I would have liked to add in an option on the admin backend to "add" new products entirely rather than being limited to a few entries - but I was concerned for half the project about rate-limiting affecting my final submission and then the idea slipped my mind at the end. I am aware of how to do it for future projects.
+
+* I would have liked to add in quantity validation in the opposite direction - if the user changes their parts selection midway through the decision process, the quantity of the last part they selected will go back up to what it was previously - however I am not exactly sure how to do this and it is not 100% necessary.
 
 
 
@@ -129,6 +146,8 @@ I find the primitive graphics quite charming - my apologies if you are old enoug
 ## Manual Testing
 
 Manual testing was done on a self-built Desktop with an Intel Core i3-10105F, 24GB of DDR4 memory, a 250GB SSD and a GeForce GTX1650, running Google Chrome on Windows 10 Pro 21H2.
+
+I tested it myself and also got a friend to test it, and after much time spent going over the input validation loops, I could not manage to make it produce any errors.
 
 Feature Tested | Expected Result | Actual Result | Pass/Fail
 ---------------|-----------------|---------------|----------
@@ -185,9 +204,7 @@ Additionally, my run.py file passed CI linting without any errors.
 
 * Eternal bane of my life, the indentation rules of Python where it feels as if one single space out of place in a line of code can ruin an entire codeblock. Careful visual inspection and autopep8 remedies this.
 
-* Midway through my project I kept getting rate-limited by Google Sheets - this as I later figured out was because I was pulling data from my sheets very inefficiently - I called each individual row/column of data as I needeed it instead of performing one single operation to pull the entire table and display it with something like PrettyTable().
-
-Regardless, at the time, adding time.sleep(secs) assisted in reducing rate-limit errors.
+* Midway through my project I kept getting rate-limited by Google Sheets - this as I later figured out was because I was pulling data from my sheets very inefficiently - I called each individual row/column of data as I needed it instead of performing one single operation to pull the entire table and display it with something like PrettyTable(). Regardless, at the time, adding time.sleep(secs) assisted in reducing rate-limit errors.
 
 * Another significant bug for me was figuring out how to make "global" variables as it's comparatively very easy to do this in Javascript - almost too easy.
 In the case of Python, I had to first declare the existence of the variable at the top of the document in ALL_CAPS, then declare it as GLOBAL ALL_CAPS in the codeblock where I needed to use it - this ensured I could modify it inside and outside of nested codeblocks and functions and ensure it still had the same value as was last assigned to it, no matter where in the code the value had been re-assigned.

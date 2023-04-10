@@ -849,7 +849,7 @@ def main_menu():
             print("Final price is €" + total_price)
             time.sleep(8)
             print("Thank you for shopping with DCP."
-                  "We hope you have a nice day.")
+                  " We hope you have a nice day.")
             time.sleep(4)
             clear()
             slow_print("1 -- Return to start")

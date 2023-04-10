@@ -9,12 +9,16 @@ The name of my Code Institute PP3 app is "Digital Computer Parts LTD". It is a p
 * [Libraries](#libraries)
 * [User Stories](#user-stories) 
 * [Overview](#Overview)
-* [Technical Features](#technical-features)
+    * [Flowchart](#flowchart)
+    * [Technical Features](#technical-features)
+    * [Future Features](#future-features)
 * [Testing](#testing)
     * [Manual Testing](#manual-testing)
-    * [Validator Testing](#validator)
-    * [Bugs](#bugs)  
+* [Validator](#validator)
+* [Bugs](#bugs)  
+    * [Known Issues](#known-issues)
 * [Deployment](#deployment)
+    * [How to Fork](#how-to-fork)
 * [Credits](#credits)  
 
 ------
@@ -35,13 +39,11 @@ The name of my Code Institute PP3 app is "Digital Computer Parts LTD". It is a p
 
 # Libraries
 
-- [random](https://docs.python.org/3/library/random.html) - Generate pseudo-random numbers 
-
-- [time](https://docs.python.org/3/library/time.html) - for implementing a sleep delay function, initially to avoid rate-limiting but now it's just for show.
+- [os](https://docs.python.org/3/library/os.html/) - For detecting whether the user is on Windows or Unix/BSD
 
 - [sys](https://docs.python.org/3/library/sys.html) - System-specific parameters and functions
 
-- [os](https://docs.python.org/3/library/os.html/) - For detecting whether the user is on Windows or Unix/BSD
+- [time](https://docs.python.org/3/library/time.html) - for implementing a sleep delay function, initially to avoid rate-limiting but now it's just for show.
 
 - [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) - for generating attractive ASCII text
 
@@ -98,6 +100,8 @@ This flowchart helped me on my way with planning and carrying out this project w
 
 ## Technical Features
 
+* Display logo in cute ASCII text format.
+
 * Display data in a cute ASCII tabulated format - data from the spreadsheet regarding CPUs, GPUs, RAM and HDDs is displayed in a neat table.
 
 * Input listener - the app keeps track of whether and how many times you have selected a particular part, and runs a results screen once all four options have been selected.
@@ -128,7 +132,6 @@ There are more features which I would have liked to add if I had the time, the p
 * I would have liked to add in an option on the admin backend to "add" new products entirely rather than being limited to a few entries - but I was concerned for half the project about rate-limiting affecting my final submission and then the idea slipped my mind at the end. I am aware of how to do it for future projects.
 
 * I would have liked to add in quantity validation in the opposite direction - if the user changes their parts selection midway through the decision process, the quantity of the last part they selected will go back up to what it was previously - however I am not exactly sure how to do this and it is not 100% necessary.
-
 
 
 

@@ -138,7 +138,7 @@ def admin_console():
                 "Loading CPUs currently in stock, please be patient...")
             while True:
                 show_cpus()
-                selected = input("\nInput the number of your chosen CPU. "
+                selected = input("\nInput the ID of your chosen CPU. "
                                  "\nType \"exit\" to return to console.")
                 if selected == '1':
                     while True:
@@ -289,7 +289,7 @@ def admin_console():
                 "Loading RAM currently in stock, please be patient...")
             while True:
                 show_ram()
-                selected = input("\nInput the number of your chosen RAM. "
+                selected = input("\nInput the ID of your chosen RAM. "
                                  "\nType \"exit\" to return to console.")
                 if selected == '1':
                     while True:
@@ -444,7 +444,7 @@ def admin_console():
                 "Loading GPUs currently in stock, please be patient...")
             while True:
                 show_gpus()
-                selected = input("\nInput the number of your chosen GPU. "
+                selected = input("\nInput the ID of your chosen GPU. "
                                  "\nType \"exit\" to return to console.")
                 if selected == '1':
                     while True:
@@ -896,7 +896,7 @@ def main_menu():
                     new_qty = 0
                     # gave me a bug if I didn't declare new_qty at start
                     choice = None
-                    selected = input("\nInput the ID of your desired CPU.")
+                    selected = input("\nInput the ID of your desired CPU. ")
                     if selected == '1':
                         this_qty = cpus.acell('E2').value
                         if this_qty == '0':
@@ -991,7 +991,7 @@ def main_menu():
                     print("Loaded. To exit, type \"exit\".")
                     new_qty = 0
                     choice = None
-                    selected = input("\nInput the number of your desired RAM.")
+                    selected = input("\nInput the ID of your desired RAM. ")
                     if selected == '1':
                         this_qty = ram.acell('C2').value
                         if this_qty == '0':
@@ -1070,7 +1070,7 @@ def main_menu():
                     print("Loaded. To exit, type \"exit\".")
                     choice = None
                     new_qty = 0
-                    selected = input("\nInput the ID of your desired GPU.")
+                    selected = input("\nInput the ID of your desired GPU. ")
                     if selected == '1':
                         this_qty = gpus.acell('C2').value
                         if this_qty == '0':
